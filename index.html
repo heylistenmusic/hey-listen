@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///Users/luizortega/Downloads/index.html -->
-<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hey, Listen — Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Hey, Listen — Studio_files/css2" rel="stylesheet">
-<script src="./Hey, Listen — Studio_files/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root {
   --bg: #0e0e0e;
@@ -287,7 +287,7 @@ select.filter {
     <div class="nav-label">Filtrar por tipo</div>
     <div class="nav-item tipo-filter active-tipo" data-tipo="todos">
       <span class="nav-icon">·</span> Todos
-      <span class="nav-badge" id="badge-todos">38</span>
+      <span class="nav-badge" id="badge-todos">0</span>
     </div>
     <div class="nav-item tipo-filter" data-tipo="Trilha original">
       <span class="nav-icon">♫</span> Trilha
@@ -329,13 +329,13 @@ select.filter {
       <div class="kpi-grid" id="pipeline-kpis">
         <div class="kpi-card highlight">
           <div class="kpi-label">Total Aprovado</div>
-          <div class="kpi-value accent" id="kpi-total">R$ 994,6k</div>
-          <div class="kpi-sub" id="kpi-total-pct">82,9% da meta de R$ 1,2M</div>
+          <div class="kpi-value accent" id="kpi-total">R$0</div>
+          <div class="kpi-sub" id="kpi-total-pct">0% da meta</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Pipeline Ativo</div>
-          <div class="kpi-value blue" id="kpi-pipe">R$ 0</div>
-          <div class="kpi-sub" id="kpi-pipe-count">0 projetos aguardando</div>
+          <div class="kpi-value blue" id="kpi-pipe">R$0</div>
+          <div class="kpi-sub" id="kpi-pipe-count">0 projetos</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Aprovados</div>
@@ -349,8 +349,8 @@ select.filter {
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Meta Restante</div>
-          <div class="kpi-value" id="kpi-meta-rest">R$ 205,4k</div>
-          <div class="kpi-sub" id="kpi-meta-label">para atingir R$ R$ 1,2M</div>
+          <div class="kpi-value" id="kpi-meta-rest">R$0</div>
+          <div class="kpi-sub" id="kpi-meta-label">para atingir a meta</div>
         </div>
       </div>
 
@@ -373,7 +373,7 @@ select.filter {
         </select>
         <select class="filter" id="filter-mes">
           <option value="">Todos os meses</option>
-        <option value="2025-08">ago/25</option><option value="2025-09">set/25</option><option value="2025-10">out/25</option><option value="2025-11">nov/25</option><option value="2025-12">dez/25</option><option value="2026-01">jan/26</option><option value="2026-02">fev/26</option><option value="2026-03">mar/26</option><option value="2026-04">abr/26</option><option value="2026-05">mai/26</option><option value="2026-06">jun/26</option><option value="2026-07">jul/26</option><option value="2026-08">ago/26</option><option value="2026-09">set/26</option><option value="2026-10">out/26</option><option value="2026-11">nov/26</option><option value="2026-12">dez/26</option></select>
+        </select>
       </div>
 
       <div class="table-wrap">
@@ -390,463 +390,9 @@ select.filter {
               <th></th>
             </tr>
           </thead>
-          <tbody id="pipeline-tbody"><tr>
-      <td style="font-weight:700">Fasano</td>
-      <td style="color:var(--muted)">DM9</td>
-      <td style="color:var(--muted);font-size:12px">Teaser</td>
-      <td class="num">R$ 30.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">61,3%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">jan/26</td>
-      <td>
-        <button onclick="editJob(&#39;81d8b9ad-969c-41ff-8ed4-154e2ced382f&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;81d8b9ad-969c-41ff-8ed4-154e2ced382f&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Fasano</td>
-      <td style="color:var(--muted)">DM9</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 24.800</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">54,6%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;b24191bc-6159-4fe5-9ad9-46de72d5a7a5&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;b24191bc-6159-4fe5-9ad9-46de72d5a7a5&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Nuvem Shop</td>
-      <td style="color:var(--muted)">Nuvem Shop</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 28.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--red);font-weight:700">19,8%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;66dfeeb8-a47c-44ef-86cc-a146e3382492&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;66dfeeb8-a47c-44ef-86cc-a146e3382492&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Decolar</td>
-      <td style="color:var(--muted)">DM9</td>
-      <td style="color:var(--muted);font-size:12px">Assinatura</td>
-      <td class="num">R$ 66.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">64,6%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;72df3a92-cc3d-4175-bcfb-74041cbcdcf2&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;72df3a92-cc3d-4175-bcfb-74041cbcdcf2&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Decolar</td>
-      <td style="color:var(--muted)">DM9</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 48.100</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">55,3%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;a72f047a-e2c5-4164-afcf-547a5096b900&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;a72f047a-e2c5-4164-afcf-547a5096b900&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Uruguai</td>
-      <td style="color:var(--muted)">O2</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 11.300</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">55,7%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;acf96e7f-64fb-48d0-b40e-126449a380cc&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;acf96e7f-64fb-48d0-b40e-126449a380cc&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Always</td>
-      <td style="color:var(--muted)">Rebolucion</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 47.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">48,7%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;710cda0e-e380-4e51-8169-9907aaea7e18&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;710cda0e-e380-4e51-8169-9907aaea7e18&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Puma + Palmeiras</td>
-      <td style="color:var(--muted)">Saigon</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 16.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--red);font-weight:700">29,1%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;4f3ccda9-4db7-415d-a874-f6934ea639ac&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;4f3ccda9-4db7-415d-a874-f6934ea639ac&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Santher</td>
-      <td style="color:var(--muted)">Monkey Land</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 34.700</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">56,4%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;f80e92d3-2a58-4bfc-bfc5-f5112a4c0ff0&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;f80e92d3-2a58-4bfc-bfc5-f5112a4c0ff0&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Amstel</td>
-      <td style="color:var(--muted)">Fish</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 15.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">60,4%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;f28e3222-8c93-4e8e-8ea1-e9e678f3da29&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;f28e3222-8c93-4e8e-8ea1-e9e678f3da29&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Amstel</td>
-      <td style="color:var(--muted)">Fish</td>
-      <td style="color:var(--muted);font-size:12px">Extra Fish</td>
-      <td class="num">R$ 5.530</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;32a94b5b-5d44-41a5-819e-f4bb3a52e233&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;32a94b5b-5d44-41a5-819e-f4bb3a52e233&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">KFC</td>
-      <td style="color:var(--muted)">DM9</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 19.850</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">56%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;86aa1937-e959-4a5c-9254-efeae23a5b50&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;86aa1937-e959-4a5c-9254-efeae23a5b50&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">XP</td>
-      <td style="color:var(--muted)">DPZ</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 26.150</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">45,8%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;4343970e-9fb7-4a65-b13c-54addfafe926&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;4343970e-9fb7-4a65-b13c-54addfafe926&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Pyridium</td>
-      <td style="color:var(--muted)">Monkey Land</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 16.700</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">52%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;8cfbfe98-32d8-45fa-8646-be4a669ddec3&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;8cfbfe98-32d8-45fa-8646-be4a669ddec3&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 81.195</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">45,6%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;60bdbcf4-3f55-403d-a210-dc4a2bfe0573&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;60bdbcf4-3f55-403d-a210-dc4a2bfe0573&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Pizza Hut</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 47.800</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">49,1%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;147dd87c-1ae8-46a8-baa0-6557b5c6c0aa&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;147dd87c-1ae8-46a8-baa0-6557b5c6c0aa&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Puma + Palmeiras</td>
-      <td style="color:var(--muted)">Saigon</td>
-      <td style="color:var(--muted);font-size:12px">Extra Saigon</td>
-      <td class="num">R$ 5.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;7ae406e3-559d-4f3d-ae06-1e38bb08d9ba&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;7ae406e3-559d-4f3d-ae06-1e38bb08d9ba&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Trocas Oferta</td>
-      <td class="num">R$ 4.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">66%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;3cc5b509-6559-481a-856b-e55a7e85f474&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;3cc5b509-6559-481a-856b-e55a7e85f474&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Trocas Oferta</td>
-      <td class="num">R$ 40.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;ebab372a-0038-4f89-a961-81d1a999991f&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;ebab372a-0038-4f89-a961-81d1a999991f&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Trocas Oferta</td>
-      <td class="num">R$ 4.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;e6abc700-e670-4507-bc29-1696685fc1a2&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;e6abc700-e670-4507-bc29-1696685fc1a2&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Always</td>
-      <td style="color:var(--muted)">Rebolucion</td>
-      <td style="color:var(--muted);font-size:12px">Extra Rebolucion</td>
-      <td class="num">R$ 9.860</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;9e9d1976-7f65-451c-ab45-ccf6cff9bdb7&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;9e9d1976-7f65-451c-ab45-ccf6cff9bdb7&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">You Dare</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Filme Lançamento</td>
-      <td class="num">R$ 12.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--red);font-weight:700">28,6%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;b23a8006-6383-4943-af59-bd812f0c660e&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;b23a8006-6383-4943-af59-bd812f0c660e&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Decolar</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 75.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">42,2%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;4b6a8ed0-c7a7-4b4d-bf9c-7c7b67edba51&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;4b6a8ed0-c7a7-4b4d-bf9c-7c7b67edba51&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Novas Versões</td>
-      <td class="num">R$ 19.400</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;44521fa8-327f-4761-8c08-1ab15528cc7c&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;44521fa8-327f-4761-8c08-1ab15528cc7c&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">C&amp;A</td>
-      <td style="color:var(--muted)">LePub</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 41.600</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">50,3%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;e393e8de-3ae8-4e6d-b908-03e425445795&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;e393e8de-3ae8-4e6d-b908-03e425445795&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Trocas oferta 25.02</td>
-      <td class="num">R$ 4.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;38c576f9-eb9a-4544-be3f-e010a8d96ddf&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;38c576f9-eb9a-4544-be3f-e010a8d96ddf&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Trocas oferta 27.02</td>
-      <td class="num">R$ 4.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;318b9123-9a0c-4200-94ab-3b24d6ad330a&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;318b9123-9a0c-4200-94ab-3b24d6ad330a&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Trocas 7 ofertas Março</td>
-      <td class="num">R$ 31.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;6cc4ff52-8362-4f59-acd3-9d86d52f7ba0&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;6cc4ff52-8362-4f59-acd3-9d86d52f7ba0&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Refação 03/03</td>
-      <td class="num">R$ 4.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;19c10c84-6328-4d9e-8466-807aa8469ccc&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;19c10c84-6328-4d9e-8466-807aa8469ccc&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">iFood</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Refação 09/03</td>
-      <td class="num">R$ 4.500</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">67,9%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;bd9d2740-01e3-469f-b544-058fde31a0ad&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;bd9d2740-01e3-469f-b544-058fde31a0ad&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Leap Motors</td>
-      <td style="color:var(--muted)">BETC</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 42.350</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--red);font-weight:700">33,1%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;b7d338b4-782c-4bd1-b822-356a22fc92de&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;b7d338b4-782c-4bd1-b822-356a22fc92de&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Leap Motors</td>
-      <td style="color:var(--muted)">BETC</td>
-      <td style="color:var(--muted);font-size:12px">Veiculação TV</td>
-      <td class="num">R$ 16.250</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">64,2%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;b7922279-9d15-4cf7-b39c-51cd4cd41fd0&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;b7922279-9d15-4cf7-b39c-51cd4cd41fd0&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Cepia</td>
-      <td style="color:var(--muted)">VML</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 16.100</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">43,2%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;0b90072a-d5df-452e-9e6b-b073af665198&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;0b90072a-d5df-452e-9e6b-b073af665198&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Cepia</td>
-      <td style="color:var(--muted)">VML</td>
-      <td style="color:var(--muted);font-size:12px">Case</td>
-      <td class="num">R$ 5.590</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">65,8%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;1a2fe5e5-637b-4f23-b84f-801b1867691a&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;1a2fe5e5-637b-4f23-b84f-801b1867691a&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">S.O.S. Mata Atlantica</td>
-      <td style="color:var(--muted)">Galeria</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 8.000</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--red);font-weight:700">32,1%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;0586fd85-e8a5-4619-a80c-505a979ff527&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;0586fd85-e8a5-4619-a80c-505a979ff527&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Decolar</td>
-      <td style="color:var(--muted)">YouDare</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 38.740</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--red);font-weight:700">33,5%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;1d2c6394-cea2-4ace-b624-b52c0b4a55fe&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;1d2c6394-cea2-4ace-b624-b52c0b4a55fe&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">KFC</td>
-      <td style="color:var(--muted)">LePub</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 42.530</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--accent);font-weight:700">46,5%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;3109d89c-2b43-49e1-99ce-6427bf059ac6&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;3109d89c-2b43-49e1-99ce-6427bf059ac6&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr><tr>
-      <td style="font-weight:700">Heineken</td>
-      <td style="color:var(--muted)">LePub</td>
-      <td style="color:var(--muted);font-size:12px">Filme</td>
-      <td class="num">R$ 44.600</td>
-      <td><span class="status-badge status-entregue">Entregue</span></td>
-      <td class="num" style="color:var(--green);font-weight:700">60,7%</td>
-      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">—</td>
-      <td>
-        <button onclick="editJob(&#39;d2e53292-2042-4550-b5b0-b4d606cfe8b7&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
-        <button onclick="confirmDelete(&#39;d2e53292-2042-4550-b5b0-b4d606cfe8b7&#39;)" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
-      </td>
-    </tr></tbody>
+          <tbody id="pipeline-tbody">
+            <tr><td colspan="8"><div class="loading"><div class="spinner"></div> Carregando...</div></td></tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -864,259 +410,9 @@ select.filter {
       </div>
     </div>
     <div class="content">
-      <div class="kanban-board" id="kanban-board"><div class="kanban-col">
-      <div class="kanban-header">
-        <div class="kanban-title" style="color:var(--yellow)">Orçado</div>
-        <div class="kanban-count">0</div>
+      <div class="kanban-board" id="kanban-board">
+        <div class="loading"><div class="spinner"></div> Carregando...</div>
       </div>
-      <div class="kanban-cards"><div style="color:var(--muted);font-size:12px;font-family:var(--font-mono);text-align:center;padding:20px 0">Nenhum job</div></div>
-    </div><div class="kanban-col">
-      <div class="kanban-header">
-        <div class="kanban-title" style="color:var(--blue)">Aprovado</div>
-        <div class="kanban-count">0</div>
-      </div>
-      <div class="kanban-cards"><div style="color:var(--muted);font-size:12px;font-family:var(--font-mono);text-align:center;padding:20px 0">Nenhum job</div></div>
-    </div><div class="kanban-col">
-      <div class="kanban-header">
-        <div class="kanban-title" style="color:var(--accent)">Em produção</div>
-        <div class="kanban-count">0</div>
-      </div>
-      <div class="kanban-cards"><div style="color:var(--muted);font-size:12px;font-family:var(--font-mono);text-align:center;padding:20px 0">Nenhum job</div></div>
-    </div><div class="kanban-col">
-      <div class="kanban-header">
-        <div class="kanban-title" style="color:var(--green)">Entregue</div>
-        <div class="kanban-count">38</div>
-      </div>
-      <div class="kanban-cards"><div class="kanban-card" onclick="editJob(&#39;81d8b9ad-969c-41ff-8ed4-154e2ced382f&#39;)">
-            <div class="kanban-card-client">Fasano</div>
-            <div class="kanban-card-tipo">Teaser</div>
-            <div class="kanban-card-value">R$ 30.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:61.28504918032787%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 61,3%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;b24191bc-6159-4fe5-9ad9-46de72d5a7a5&#39;)">
-            <div class="kanban-card-client">Fasano</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 24.800</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:54.58911290322581%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 54,6%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;66dfeeb8-a47c-44ef-86cc-a146e3382492&#39;)">
-            <div class="kanban-card-client">Nuvem Shop</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 28.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:19.783142857142856%;background:#f87171"></div></div>
-            <div class="kanban-card-margem">Margem: 19,8%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;72df3a92-cc3d-4175-bcfb-74041cbcdcf2&#39;)">
-            <div class="kanban-card-client">Decolar</div>
-            <div class="kanban-card-tipo">Assinatura</div>
-            <div class="kanban-card-value">R$ 66.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:64.64663157894736%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 64,6%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;a72f047a-e2c5-4164-afcf-547a5096b900&#39;)">
-            <div class="kanban-card-client">Decolar</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 48.100</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:55.31754677754678%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 55,3%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;acf96e7f-64fb-48d0-b40e-126449a380cc&#39;)">
-            <div class="kanban-card-client">Uruguai</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 11.300</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:55.68283185840708%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 55,7%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;710cda0e-e380-4e51-8169-9907aaea7e18&#39;)">
-            <div class="kanban-card-client">Always</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 47.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:48.74519148936171%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 48,7%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;4f3ccda9-4db7-415d-a874-f6934ea639ac&#39;)">
-            <div class="kanban-card-client">Puma + Palmeiras</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 16.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:29.124874999999996%;background:#f87171"></div></div>
-            <div class="kanban-card-margem">Margem: 29,1%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;f80e92d3-2a58-4bfc-bfc5-f5112a4c0ff0&#39;)">
-            <div class="kanban-card-client">Santher</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 34.700</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:56.36731988472622%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 56,4%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;f28e3222-8c93-4e8e-8ea1-e9e678f3da29&#39;)">
-            <div class="kanban-card-client">Amstel</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 15.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:60.39566666666667%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 60,4%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;32a94b5b-5d44-41a5-819e-f4bb3a52e233&#39;)">
-            <div class="kanban-card-client">Amstel</div>
-            <div class="kanban-card-tipo">Extra Fish</div>
-            <div class="kanban-card-value">R$ 5.530</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89602169981916%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;86aa1937-e959-4a5c-9254-efeae23a5b50&#39;)">
-            <div class="kanban-card-client">KFC</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 19.850</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:56.03073047858942%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 56%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;4343970e-9fb7-4a65-b13c-54addfafe926&#39;)">
-            <div class="kanban-card-client">XP</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 26.150</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:45.75380497131932%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 45,8%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;8cfbfe98-32d8-45fa-8646-be4a669ddec3&#39;)">
-            <div class="kanban-card-client">Pyridium</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 16.700</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:51.966826347305386%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 52%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;60bdbcf4-3f55-403d-a210-dc4a2bfe0573&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 81.195</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:45.63968224644375%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 45,6%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;147dd87c-1ae8-46a8-baa0-6557b5c6c0aa&#39;)">
-            <div class="kanban-card-client">Pizza Hut</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 47.800</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:49.066171548117154%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 49,1%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;7ae406e3-559d-4f3d-ae06-1e38bb08d9ba&#39;)">
-            <div class="kanban-card-client">Puma + Palmeiras</div>
-            <div class="kanban-card-tipo">Extra Saigon</div>
-            <div class="kanban-card-value">R$ 5.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.88680000000001%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;3cc5b509-6559-481a-856b-e55a7e85f474&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Trocas Oferta</div>
-            <div class="kanban-card-value">R$ 4.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:65.966%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 66%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;ebab372a-0038-4f89-a961-81d1a999991f&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Trocas Oferta</div>
-            <div class="kanban-card-value">R$ 40.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.894925%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;e6abc700-e670-4507-bc29-1696685fc1a2&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Trocas Oferta</div>
-            <div class="kanban-card-value">R$ 4.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89533333333333%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;9e9d1976-7f65-451c-ab45-ccf6cff9bdb7&#39;)">
-            <div class="kanban-card-client">Always</div>
-            <div class="kanban-card-tipo">Extra Rebolucion</div>
-            <div class="kanban-card-value">R$ 9.860</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.8946247464503%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;b23a8006-6383-4943-af59-bd812f0c660e&#39;)">
-            <div class="kanban-card-client">You Dare</div>
-            <div class="kanban-card-tipo">Filme Lançamento</div>
-            <div class="kanban-card-value">R$ 12.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:28.64425%;background:#f87171"></div></div>
-            <div class="kanban-card-margem">Margem: 28,6%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;4b6a8ed0-c7a7-4b4d-bf9c-7c7b67edba51&#39;)">
-            <div class="kanban-card-client">Decolar</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 75.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:42.1886%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 42,2%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;44521fa8-327f-4761-8c08-1ab15528cc7c&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Novas Versões</div>
-            <div class="kanban-card-value">R$ 19.400</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89567010309278%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;e393e8de-3ae8-4e6d-b908-03e425445795&#39;)">
-            <div class="kanban-card-client">C&amp;A</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 41.600</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:50.29889423076923%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 50,3%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;38c576f9-eb9a-4544-be3f-e010a8d96ddf&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Trocas oferta 25.02</div>
-            <div class="kanban-card-value">R$ 4.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89533333333333%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;318b9123-9a0c-4200-94ab-3b24d6ad330a&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Trocas oferta 27.02</div>
-            <div class="kanban-card-value">R$ 4.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89533333333333%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;6cc4ff52-8362-4f59-acd3-9d86d52f7ba0&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Trocas 7 ofertas Março</div>
-            <div class="kanban-card-value">R$ 31.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89479365079364%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;19c10c84-6328-4d9e-8466-807aa8469ccc&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Refação 03/03</div>
-            <div class="kanban-card-value">R$ 4.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89533333333333%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;bd9d2740-01e3-469f-b544-058fde31a0ad&#39;)">
-            <div class="kanban-card-client">iFood</div>
-            <div class="kanban-card-tipo">Refação 09/03</div>
-            <div class="kanban-card-value">R$ 4.500</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:67.89533333333333%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 67,9%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;b7d338b4-782c-4bd1-b822-356a22fc92de&#39;)">
-            <div class="kanban-card-client">Leap Motors</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 42.350</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:33.08961038961039%;background:#f87171"></div></div>
-            <div class="kanban-card-margem">Margem: 33,1%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;b7922279-9d15-4cf7-b39c-51cd4cd41fd0&#39;)">
-            <div class="kanban-card-client">Leap Motors</div>
-            <div class="kanban-card-tipo">Veiculação TV</div>
-            <div class="kanban-card-value">R$ 16.250</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:64.20221538461539%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 64,2%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;0b90072a-d5df-452e-9e6b-b073af665198&#39;)">
-            <div class="kanban-card-client">Cepia</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 16.100</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:43.174906832298134%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 43,2%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;1a2fe5e5-637b-4f23-b84f-801b1867691a&#39;)">
-            <div class="kanban-card-client">Cepia</div>
-            <div class="kanban-card-tipo">Case</div>
-            <div class="kanban-card-value">R$ 5.590</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:65.82808586762076%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 65,8%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;0586fd85-e8a5-4619-a80c-505a979ff527&#39;)">
-            <div class="kanban-card-client">S.O.S. Mata Atlantica</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 8.000</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:32.133125%;background:#f87171"></div></div>
-            <div class="kanban-card-margem">Margem: 32,1%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;1d2c6394-cea2-4ace-b624-b52c0b4a55fe&#39;)">
-            <div class="kanban-card-client">Decolar</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 38.740</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:33.512080536912755%;background:#f87171"></div></div>
-            <div class="kanban-card-margem">Margem: 33,5%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;3109d89c-2b43-49e1-99ce-6427bf059ac6&#39;)">
-            <div class="kanban-card-client">KFC</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 42.530</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:46.54498001410769%;background:#c8f135"></div></div>
-            <div class="kanban-card-margem">Margem: 46,5%</div>
-          </div><div class="kanban-card" onclick="editJob(&#39;d2e53292-2042-4550-b5b0-b4d606cfe8b7&#39;)">
-            <div class="kanban-card-client">Heineken</div>
-            <div class="kanban-card-tipo">Filme</div>
-            <div class="kanban-card-value">R$ 44.600</div>
-            <div class="margem-bar"><div class="margem-fill" style="width:60.7452466367713%;background:#34d399"></div></div>
-            <div class="kanban-card-margem">Margem: 60,7%</div>
-          </div></div>
-    </div></div>
     </div>
   </div>
 
@@ -1140,27 +436,27 @@ select.filter {
       <div class="kpi-grid" id="dash-kpis">
         <div class="kpi-card highlight">
           <div class="kpi-label">Receita Total</div>
-          <div class="kpi-value accent" id="dk-receita">R$ 995,2k</div>
-          <div class="kpi-sub" id="dk-receita-s">10 meses</div>
+          <div class="kpi-value accent" id="dk-receita">—</div>
+          <div class="kpi-sub" id="dk-receita-s">—</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Gastos Totais</div>
-          <div class="kpi-value" id="dk-gastos">R$ 930,0k</div>
+          <div class="kpi-value" id="dk-gastos">—</div>
           <div class="kpi-sub">Fixos + variáveis</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Resultado</div>
-          <div class="kpi-value green" id="dk-resultado">R$ 65,2k</div>
+          <div class="kpi-value" id="dk-resultado">—</div>
           <div class="kpi-sub" id="dk-resultado-s">—</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Margem Lucro</div>
-          <div class="kpi-value green" id="dk-margem">6,6%</div>
+          <div class="kpi-value" id="dk-margem">—</div>
           <div class="kpi-sub">Sobre receita bruta</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Ponto Equilíbrio</div>
-          <div class="kpi-value" id="dk-pe">R$ 870,7k</div>
+          <div class="kpi-value" id="dk-pe">—</div>
           <div class="kpi-sub">Receita p/ zerar</div>
         </div>
       </div>
@@ -1168,75 +464,31 @@ select.filter {
       <div class="dash-grid">
         <div class="panel">
           <div class="panel-title">Movimentações por período <span id="ch-bar-period"></span></div>
-          <div class="chart-box"><canvas id="ch-bar" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+          <div class="chart-box"><canvas id="ch-bar"></canvas></div>
         </div>
         <div class="panel">
           <div class="panel-title">Composição dos Gastos</div>
-          <div class="chart-box"><canvas id="ch-pie" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+          <div class="chart-box"><canvas id="ch-pie"></canvas></div>
         </div>
       </div>
       <div class="dash-grid-3">
         <div class="panel">
           <div class="panel-title">Lucro Operacional</div>
-          <div class="chart-box" style="height:200px"><canvas id="ch-lucro" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+          <div class="chart-box" style="height:200px"><canvas id="ch-lucro"></canvas></div>
         </div>
         <div class="panel">
           <div class="panel-title">Margem de Contribuição %</div>
-          <div class="chart-box" style="height:200px"><canvas id="ch-mc" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+          <div class="chart-box" style="height:200px"><canvas id="ch-mc"></canvas></div>
         </div>
         <div class="panel">
           <div class="panel-title">Receita vs. Ponto de Equilíbrio</div>
-          <div class="chart-box" style="height:200px"><canvas id="ch-pe-chart" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+          <div class="chart-box" style="height:200px"><canvas id="ch-pe-chart"></canvas></div>
         </div>
       </div>
       <div class="panel">
         <div class="panel-title">DRE — Demonstrativo de Resultado <span id="dre-period-label"></span></div>
         <div style="overflow-x:auto">
-          <table id="dre-table" style="min-width:700px"><thead><tr style="border-bottom:1px solid var(--border)">
-    <th style="text-align:left;padding:10px 14px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">Conta</th>
-    <th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">ago/25</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">set/25</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">out/25</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">nov/25</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">dez/25</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">jan/26</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">fev/26</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">mar/26</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">abr/26</th><th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">mai/26</th>
-    <th style="text-align:right;padding:10px 14px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">Total</th>
-  </tr></thead><tbody><tr style="border-bottom:1px solid var(--border);;font-weight:700">
-      <td style="padding:10px 14px;font-size:13px">Receita Bruta</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 55.300</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 28.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 125.900</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 118.230</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 191.695</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 71.360</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 181.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 51.530</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 127.570</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ 44.600</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--text)">R$ 995.185</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:10px 14px;font-size:13px">Custo Variável (estim.)</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -26.323</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -13.328</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -59.928</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -56.277</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -91.247</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -33.967</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -86.156</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -24.528</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -60.723</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -21.230</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -473.708</td>
-    </tr><tr style="border-bottom:1px solid var(--border);;font-weight:700">
-      <td style="padding:10px 14px;font-size:13px">Margem de Contribuição</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 28.977</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 14.672</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 65.972</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 61.953</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 100.448</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 37.393</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 94.844</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 27.002</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 66.847</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 23.370</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--accent)">R$ 521.477</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:10px 14px;font-size:13px">Custo Fixo</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -20.725</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -48.264</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -43.389</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -46.497</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -49.681</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -53.823</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -53.019</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -42.784</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -47.637</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -50.433</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -456.253</td>
-    </tr><tr style="border-bottom:1px solid var(--border);opacity:0.7">
-      <td style="padding:10px 14px;font-size:13px;font-size:12px;color:var(--muted)">  ↳ Salários</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -18.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -37.000</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -351.000</td>
-    </tr><tr style="border-bottom:1px solid var(--border);opacity:0.7">
-      <td style="padding:10px 14px;font-size:13px;font-size:12px;color:var(--muted)">  ↳ ESFERAS</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ -0</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.890</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -26.010</td>
-    </tr><tr style="border-bottom:1px solid var(--border);opacity:0.7">
-      <td style="padding:10px 14px;font-size:13px;font-size:12px;color:var(--muted)">  ↳ Apro+Som</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text)">R$ -0</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -870</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -7.830</td>
-    </tr><tr style="border-bottom:1px solid var(--border);opacity:0.7">
-      <td style="padding:10px 14px;font-size:13px;font-size:12px;color:var(--muted)">  ↳ Contabilidade</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -238</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -300</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -586</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -286</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -3.127</td>
-    </tr><tr style="border-bottom:1px solid var(--border);opacity:0.7">
-      <td style="padding:10px 14px;font-size:13px;font-size:12px;color:var(--muted)">  ↳ ADM/Assinaturas</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.487</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -7.218</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -2.343</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -5.437</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -8.335</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -12.777</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -11.973</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -1.738</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -6.591</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -9.387</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--red)">R$ -68.286</td>
-    </tr><tr style="border-bottom:1px solid var(--border);;font-weight:700">
-      <td style="padding:10px 14px;font-size:13px">Lucro Operacional</td>
-      <td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 8.252</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -33.592</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 22.582</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 15.455</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 50.768</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -16.431</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 41.825</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -15.782</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">R$ 19.210</td><td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);color:var(--red)">R$ -27.063</td>
-      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--accent)">R$ 65.224</td>
-    </tr></tbody></table>
+          <table id="dre-table" style="min-width:700px"></table>
         </div>
       </div>
     </div>
@@ -1254,13 +506,13 @@ select.filter {
       <div class="rr-grid">
         <div class="rr-big rr-accent">
           <div class="rr-big-label">Faturamento Bruto (jobs reais)</div>
-          <div class="rr-big-value" id="rr-bruto">R$ 994.645</div>
-          <div class="rr-big-sub" id="rr-bruto-sub"><strong>38 jobs faturados</strong> · valor aprovado acumulado</div>
+          <div class="rr-big-value" id="rr-bruto">—</div>
+          <div class="rr-big-sub" id="rr-bruto-sub">—</div>
         </div>
         <div class="rr-big rr-blue">
           <div class="rr-big-label">Faturamento Líquido (saldo após custos do job)</div>
-          <div class="rr-big-value" id="rr-liquido">R$ 509.451</div>
-          <div class="rr-big-sub" id="rr-liquido-sub"><strong>Margem real: 51,2%</strong> · de cada R$ 100, R$ 51 viraram lucro</div>
+          <div class="rr-big-value" id="rr-liquido">—</div>
+          <div class="rr-big-sub" id="rr-liquido-sub">—</div>
         </div>
       </div>
       <div class="panel" style="margin-bottom:18px">
@@ -1268,94 +520,30 @@ select.filter {
         <div class="meta-grid">
           <div class="meta-card breakeven">
             <div class="meta-card-label">Sobreviver (break-even)</div>
-            <div class="meta-card-value" id="meta-be">R$ 91.667</div>
+            <div class="meta-card-value" id="meta-be">—</div>
             <div class="kpi-sub" style="margin-top:6px">Lucro = R$ 0</div>
           </div>
           <div class="meta-card saudavel">
             <div class="meta-card-label">Saudável (+30%)</div>
-            <div class="meta-card-value" id="meta-sa">R$ 119.168</div>
+            <div class="meta-card-value" id="meta-sa">—</div>
             <div class="kpi-sub" style="margin-top:6px">Lucro = 30% do custo fixo</div>
           </div>
           <div class="meta-card crescer">
             <div class="meta-card-label">Crescer (+60%)</div>
-            <div class="meta-card-value" id="meta-cr">R$ 146.668</div>
+            <div class="meta-card-value" id="meta-cr">—</div>
             <div class="kpi-sub" style="margin-top:6px">Lucro = 60% do custo fixo</div>
           </div>
         </div>
-        <div class="meta-explica" id="meta-explica">Custo fixo médio (mar/26, abr/26, mai/26) = <strong style="color:var(--text)">R$ 46.951/mês</strong> · MC média = <strong style="color:var(--text)">51,2%</strong> · Break-even = R$ 46.951 ÷ 51,2% = <strong style="color:var(--accent)">R$ 91.667</strong></div>
+        <div class="meta-explica" id="meta-explica">Carregando...</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
         <div class="panel">
           <div class="panel-title">Status mês a mês</div>
-          <div id="rr-meses"><div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0px; border-bottom: 1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div>
-        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">dez/25</div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">R$ 191,7k</div>
-        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--green);min-width:80px;text-align:right">R$ 50,8k</div>
-      </div></div><div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0px; border-bottom: 1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--red)"></div>
-        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">jan/26</div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">R$ 71,4k</div>
-        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--red);min-width:80px;text-align:right">-R$ 16,4k</div>
-      </div></div><div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0px; border-bottom: 1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div>
-        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">fev/26</div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">R$ 181,0k</div>
-        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--green);min-width:80px;text-align:right">R$ 41,8k</div>
-      </div></div><div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0px; border-bottom: 1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--red)"></div>
-        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">mar/26</div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">R$ 51,5k</div>
-        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--red);min-width:80px;text-align:right">-R$ 15,8k</div>
-      </div></div><div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0px; border-bottom: 1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div>
-        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">abr/26</div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">R$ 127,6k</div>
-        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--green);min-width:80px;text-align:right">R$ 19,2k</div>
-      </div></div><div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0px; border-bottom: 1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--red)"></div>
-        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">mai/26</div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">R$ 44,6k</div>
-        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--red);min-width:80px;text-align:right">-R$ 27,1k</div>
-      </div></div></div>
+          <div id="rr-meses"></div>
         </div>
         <div class="panel">
           <div class="panel-title">Saúde do negócio</div>
-          <div id="rr-saude">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div style="font-size:12px;color:var(--muted)">Meses no azul</div>
-      <div style="font-size:15px;font-weight:700;color:var(--yellow);font-family:var(--font-mono)">6/10</div>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div style="font-size:12px;color:var(--muted)">Receita média/mês</div>
-      <div style="font-size:15px;font-weight:700;color:var(--text);font-family:var(--font-mono)">R$ 99,5k</div>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div style="font-size:12px;color:var(--muted)">Margem operacional média</div>
-      <div style="font-size:15px;font-weight:700;color:var(--yellow);font-family:var(--font-mono)">6,6%</div>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div style="font-size:12px;color:var(--muted)">Margem de contribuição</div>
-      <div style="font-size:15px;font-weight:700;color:var(--green);font-family:var(--font-mono)">51,2%</div>
-    </div></div>
+          <div id="rr-saude"></div>
         </div>
       </div>
     </div>
@@ -1376,34 +564,19 @@ select.filter {
         <!-- INPUT PANEL -->
         <div>
           <div class="panel" style="margin-bottom: 18px;">
-            <div class="panel-title">Borderô (custo de produção)</div>
+            <div class="panel-title">Custo total do job (do ESFERAS)</div>
 
-            <div style="margin-bottom: 20px;">
-              <label class="form-label">Custo total do job (R$)</label>
-              <input type="number" id="calc-bordero" class="form-input" style="font-size: 28px; font-weight: 800; padding: 14px 16px; letter-spacing: -0.02em;" placeholder="0" value="20700">
+            <div style="margin-bottom: 12px;">
+              <label class="form-label">Cole aqui o custo de produção fechado no ESFERAS (R$)</label>
+              <input type="number" id="calc-bordero" class="form-input"
+                style="font-size: 36px; font-weight: 800; padding: 18px 16px; letter-spacing: -0.02em; text-align: center;"
+                placeholder="0" value="20700">
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
-              <div>
-                <label class="form-label">Produção (R$)</label>
-                <input type="number" id="calc-producao" class="form-input" placeholder="0" value="14500">
-              </div>
-              <div>
-                <label class="form-label">Gravação (R$)</label>
-                <input type="number" id="calc-gravacao" class="form-input" placeholder="0" value="2600">
-              </div>
-              <div>
-                <label class="form-label">Vozes (R$)</label>
-                <input type="number" id="calc-vozes" class="form-input" placeholder="0" value="3600">
-              </div>
-              <div>
-                <label class="form-label">Outros (R$)</label>
-                <input type="number" id="calc-outros" class="form-input" placeholder="0" value="0">
-              </div>
-            </div>
-
-            <div style="background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.2); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: var(--muted); font-family: var(--font-mono);">
-              Total automático = Produção + Gravação + Vozes + Outros
+            <div style="background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.15); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: var(--muted); font-family: var(--font-mono); line-height: 1.7;">
+              1. Orça no ESFERAS normalmente<br>
+              2. Copia o <strong style="color:var(--text)">Custo Total de Produção</strong><br>
+              3. Cola aqui → a calculadora faz o resto
             </div>
           </div>
 
@@ -1416,7 +589,8 @@ select.filter {
                 <label class="form-label" style="margin: 0;">Margem da empresa</label>
                 <span id="calc-margem-val" style="font-size: 20px; font-weight: 800; color: var(--accent); font-family: var(--font-mono);">30%</span>
               </div>
-              <input type="range" id="calc-margem" min="10" max="70" value="30" step="1" style="width: 100%; accent-color: var(--accent); height: 4px; cursor: pointer;">
+              <input type="range" id="calc-margem" min="10" max="70" value="30" step="1"
+                style="width: 100%; accent-color: var(--accent); height: 4px; cursor: pointer;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--dim); font-family: var(--font-mono); margin-top: 4px;">
                 <span>10% (risco)</span><span>30% (padrão)</span><span>70% (premium)</span>
               </div>
@@ -1434,7 +608,8 @@ select.filter {
                 <label class="form-label" style="margin: 0;">Imposto (NF)</label>
                 <span id="calc-imposto-val" style="font-size: 20px; font-weight: 800; color: var(--text); font-family: var(--font-mono);">15.5%</span>
               </div>
-              <input type="range" id="calc-imposto" min="6" max="20" value="15.5" step="0.5" style="width: 100%; accent-color: var(--blue); height: 4px; cursor: pointer;">
+              <input type="range" id="calc-imposto" min="6" max="20" value="15.5" step="0.5"
+                style="width: 100%; accent-color: var(--blue); height: 4px; cursor: pointer;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--dim); font-family: var(--font-mono); margin-top: 4px;">
                 <span>6%</span><span>15.5% (atual)</span><span>20%</span>
               </div>
@@ -1446,12 +621,13 @@ select.filter {
                 <label class="form-label" style="margin: 0;">Comissão por sócio</label>
                 <span id="calc-comissao-val" style="font-size: 20px; font-weight: 800; color: var(--text); font-family: var(--font-mono);">5%</span>
               </div>
-              <input type="range" id="calc-comissao" min="0" max="10" value="5" step="0.5" style="width: 100%; accent-color: var(--yellow); height: 4px; cursor: pointer;">
+              <input type="range" id="calc-comissao" min="0" max="10" value="5" step="0.5"
+                style="width: 100%; accent-color: var(--yellow); height: 4px; cursor: pointer;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--dim); font-family: var(--font-mono); margin-top: 4px;">
                 <span>0%</span><span>5% × 3 sócios</span><span>10%</span>
               </div>
               <div style="margin-top: 8px; font-size: 11px; color: var(--muted); font-family: var(--font-mono);">
-                Total comissões: <span id="calc-comissao-total" style="color: var(--yellow); font-weight: 700;">15.0%</span> (3 sócios × 5%)
+                Total comissões: <span id="calc-comissao-total" style="color: var(--yellow); font-weight: 700;">15%</span> (3 sócios × 5%)
               </div>
             </div>
           </div>
@@ -1460,28 +636,28 @@ select.filter {
         <!-- RESULT PANEL -->
         <div>
           <!-- Semáforo -->
-          <div id="calc-semaforo" class="panel" style="margin-bottom: 18px; text-align: center; padding: 28px; border-color: rgba(52, 211, 153, 0.3);">
+          <div id="calc-semaforo" class="panel" style="margin-bottom: 18px; text-align: center; padding: 28px;">
             <div id="semaforo-icon" style="font-size: 48px; margin-bottom: 12px;">🟢</div>
             <div id="semaforo-label" style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Job saudável</div>
-            <div id="semaforo-sub" style="font-size: 12px; color: var(--muted); font-family: var(--font-mono);">Margem real de 30% — acima do mínimo seguro</div>
+            <div id="semaforo-sub" style="font-size: 12px; color: var(--muted); font-family: var(--font-mono);">Margem acima do mínimo seguro</div>
           </div>
 
           <!-- Valor a cobrar -->
           <div class="panel" style="margin-bottom: 18px; background: linear-gradient(135deg, var(--card) 0%, rgba(200,241,53,0.06) 100%); border-color: rgba(200,241,53,0.2);">
             <div class="kpi-label">Valor a cobrar do cliente</div>
-            <div id="calc-valor-final" style="font-size: 52px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; font-family: var(--font-mono);">R$ 52.405</div>
+            <div id="calc-valor-final" style="font-size: 52px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; font-family: var(--font-mono);">R$ 0</div>
             <div style="margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
               <div style="text-align: center;">
                 <div style="font-size: 10px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 4px;">Borderô</div>
-                <div id="calc-r-bordero" style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);">R$ 20.700</div>
+                <div id="calc-r-bordero" style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);">R$ 0</div>
               </div>
               <div style="text-align: center;">
                 <div style="font-size: 10px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 4px;">Imposto</div>
-                <div id="calc-r-imposto" style="font-size: 14px; font-weight: 700; color: var(--red); font-family: var(--font-mono);">R$ 8.123</div>
+                <div id="calc-r-imposto" style="font-size: 14px; font-weight: 700; color: var(--red); font-family: var(--font-mono);">R$ 0</div>
               </div>
               <div style="text-align: center;">
                 <div style="font-size: 10px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 4px;">Comissões</div>
-                <div id="calc-r-comissoes" style="font-size: 14px; font-weight: 700; color: var(--yellow); font-family: var(--font-mono);">R$ 7.861</div>
+                <div id="calc-r-comissoes" style="font-size: 14px; font-weight: 700; color: var(--yellow); font-family: var(--font-mono);">R$ 0</div>
               </div>
             </div>
           </div>
@@ -1490,27 +666,27 @@ select.filter {
           <div class="panel" style="margin-bottom: 18px;">
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
               <div style="font-size: 13px; color: var(--muted);">Valor cobrado do cliente</div>
-              <div id="cr-valor" style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);">R$ 52.405</div>
+              <div id="cr-valor" style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);">R$ 0</div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
               <div style="font-size: 13px; color: var(--muted);">− Custo de produção</div>
-              <div id="cr-custo" style="font-size: 14px; font-weight: 700; color: var(--red); font-family: var(--font-mono);">− R$ 20.700</div>
+              <div id="cr-custo" style="font-size: 14px; font-weight: 700; color: var(--red); font-family: var(--font-mono);">R$ 0</div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
               <div style="font-size: 13px; color: var(--muted);">− Imposto NF</div>
-              <div id="cr-imposto" style="font-size: 14px; font-weight: 700; color: var(--red); font-family: var(--font-mono);">− R$ 8.123</div>
+              <div id="cr-imposto" style="font-size: 14px; font-weight: 700; color: var(--red); font-family: var(--font-mono);">R$ 0</div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
               <div style="font-size: 13px; color: var(--muted);">− Comissões sócios (3×)</div>
-              <div id="cr-comissoes" style="font-size: 14px; font-weight: 700; color: var(--yellow); font-family: var(--font-mono);">− R$ 7.861</div>
+              <div id="cr-comissoes" style="font-size: 14px; font-weight: 700; color: var(--yellow); font-family: var(--font-mono);">R$ 0</div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0 4px;">
               <div style="font-size: 15px; font-weight: 700;">= Lucro real da empresa</div>
-              <div id="cr-lucro" style="font-size: 22px; font-weight: 800; font-family: var(--font-mono); color: var(--accent);">R$ 15.722</div>
+              <div id="cr-lucro" style="font-size: 22px; font-weight: 800; font-family: var(--font-mono); color: var(--accent);">R$ 0</div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0 0;">
               <div style="font-size: 12px; color: var(--muted);">Margem real sobre valor cobrado</div>
-              <div id="cr-margem-real" style="font-size: 14px; font-weight: 700; font-family: var(--font-mono); color: var(--green);">30%</div>
+              <div id="cr-margem-real" style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);">0%</div>
             </div>
           </div>
 
@@ -1520,8 +696,8 @@ select.filter {
             <div style="font-size: 12px; color: var(--muted); font-family: var(--font-mono); margin-bottom: 12px;">
               Valor mínimo absoluto a cobrar pra não ter prejuízo nesse job
             </div>
-            <div id="calc-piso" style="font-size: 28px; font-weight: 800; color: var(--red); font-family: var(--font-mono); margin-bottom: 6px;">R$ 29.784</div>
-            <div id="calc-piso-sub" style="font-size: 11px; color: var(--muted); font-family: var(--font-mono);">Abaixo de R$ 29.784 o job dá prejuízo · Piso seguro (5% lucro): R$ 32.093</div>
+            <div id="calc-piso" style="font-size: 28px; font-weight: 800; color: var(--red); font-family: var(--font-mono); margin-bottom: 6px;">R$ 0</div>
+            <div id="calc-piso-sub" style="font-size: 11px; color: var(--muted); font-family: var(--font-mono);">—</div>
           </div>
         </div>
       </div>
@@ -1540,56 +716,7 @@ select.filter {
               <th style="text-align:center; padding:10px 14px; font-size:11px; color:var(--muted); font-family:var(--font-mono); font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Status</th>
             </tr>
           </thead>
-          <tbody id="calc-tabela"><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:11px 14px;font-size:13px;color:var(--red)">Prejuízo (não fazer)</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--red)">15%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;">R$ 37.982</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);">R$ 5.697</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">15%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:11px 14px;font-size:13px;color:var(--red)">Piso mínimo</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--red)">20%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;">R$ 41.818</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);">R$ 8.364</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">20%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:11px 14px;font-size:13px;color:var(--yellow)">Piso seguro</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--yellow)">25%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;">R$ 46.517</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);">R$ 11.629</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">25%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr><tr style="border-bottom:1px solid var(--border);background:rgba(200,241,53,0.06);">
-      <td style="padding:11px 14px;font-size:13px;font-weight:700;color:var(--accent)">Standard ← padrão</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">30%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;font-weight:700;">R$ 52.405</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);font-weight:700;">R$ 15.722</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">30%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:11px 14px;font-size:13px;color:var(--green)">Bom</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--green)">40%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;">R$ 70.169</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);">R$ 28.068</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">40%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:11px 14px;font-size:13px;color:var(--green)">Ótimo</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--green)">50%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;">R$ 106.154</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);">R$ 53.077</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">50%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr><tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:11px 14px;font-size:13px;color:var(--green)">Premium</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:var(--green)">60%</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;">R$ 217.895</td>
-      <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:var(--green);">R$ 130.737</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:var(--green)">60%</td>
-      <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:var(--green)">✓ Viável</td>
-    </tr></tbody>
+          <tbody id="calc-tabela"></tbody>
         </table>
       </div>
 
@@ -1649,7 +776,7 @@ select.filter {
       <label class="form-label">Mês referência</label>
       <select class="form-input" id="f-mes">
         <option value="">— selecionar —</option>
-      <option value="2025-08">ago/25</option><option value="2025-09">set/25</option><option value="2025-10">out/25</option><option value="2025-11">nov/25</option><option value="2025-12">dez/25</option><option value="2026-01">jan/26</option><option value="2026-02">fev/26</option><option value="2026-03">mar/26</option><option value="2026-04">abr/26</option><option value="2026-05">mai/26</option><option value="2026-06">jun/26</option><option value="2026-07">jul/26</option><option value="2026-08">ago/26</option><option value="2026-09">set/26</option><option value="2026-10">out/26</option><option value="2026-11">nov/26</option><option value="2026-12">dez/26</option></select>
+      </select>
     </div>
     <div class="form-row">
       <label class="form-label">Notas</label>
@@ -2232,11 +1359,7 @@ document.getElementById('modal-overlay').addEventListener('click', e => { if(e.t
 // CALCULADORA
 // ============================================================
 function calcBorderoTotal() {
-  const p = parseFloat(document.getElementById('calc-producao').value) || 0;
-  const g = parseFloat(document.getElementById('calc-gravacao').value) || 0;
-  const v = parseFloat(document.getElementById('calc-vozes').value) || 0;
-  const o = parseFloat(document.getElementById('calc-outros').value) || 0;
-  return p + g + v + o;
+  return parseFloat(document.getElementById('calc-bordero').value) || 0;
 }
 
 function calcValorFinal(bordero, margemPct, impostoPct, comissaoPct) {
@@ -2336,9 +1459,7 @@ function setMargem(val) {
   renderCalc();
 }
 
-['calc-producao','calc-gravacao','calc-vozes','calc-outros','calc-bordero'].forEach(id => {
-  document.getElementById(id).addEventListener('input', renderCalc);
-});
+document.getElementById('calc-bordero').addEventListener('input', renderCalc);
 ['calc-margem','calc-imposto','calc-comissao'].forEach(id => {
   document.getElementById(id).addEventListener('input', renderCalc);
 });
@@ -2349,6 +1470,5 @@ renderCalc();
 // ============================================================
 init();
 </script>
-
-
-</body></html>
+</body>
+</html>
