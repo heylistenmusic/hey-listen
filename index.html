@@ -564,41 +564,43 @@ select.filter {
         <!-- INPUT PANEL -->
         <div>
           <div class="panel" style="margin-bottom: 18px;">
-            <div class="panel-title">Custo total do job (do ESFERAS)</div>
+            <div class="panel-title">Valores do ESFERAS</div>
 
-            <div style="margin-bottom: 12px;">
-              <label class="form-label">Cole aqui o custo de produção fechado no ESFERAS (R$)</label>
+            <div style="margin-bottom: 16px;">
+              <label class="form-label">Valor cobrado do cliente (valor final do orçamento)</label>
+              <input type="number" id="calc-valor-cliente" class="form-input"
+                style="font-size: 36px; font-weight: 800; padding: 18px 16px; letter-spacing: -0.02em; text-align: center; color: var(--accent);"
+                placeholder="0" value="49784">
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <label class="form-label">Custo de produção (borderô total)</label>
               <input type="number" id="calc-bordero" class="form-input"
-                style="font-size: 36px; font-weight: 800; padding: 18px 16px; letter-spacing: -0.02em; text-align: center;"
+                style="font-size: 28px; font-weight: 700; padding: 14px 16px; letter-spacing: -0.02em; text-align: center;"
                 placeholder="0" value="20700">
             </div>
 
-            <div style="background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.15); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: var(--muted); font-family: var(--font-mono); line-height: 1.7;">
-              1. Orça no ESFERAS normalmente<br>
-              2. Copia o <strong style="color:var(--text)">Custo Total de Produção</strong><br>
-              3. Cola aqui → a calculadora faz o resto
+            <div style="background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.15); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: var(--muted); font-family: var(--font-mono); line-height: 1.8;">
+              1. Fecha o orçamento no ESFERAS normalmente<br>
+              2. Copia o <strong style="color:var(--text)">Valor Final</strong> → cola em cima<br>
+              3. Copia o <strong style="color:var(--text)">Custo de Produção</strong> → cola embaixo<br>
+              4. A calculadora confirma se a margem está boa ✓
             </div>
           </div>
 
           <div class="panel">
-            <div class="panel-title">Parâmetros financeiros</div>
+            <div class="panel-title">Margem calculada automaticamente</div>
 
             <!-- Margem -->
             <div style="margin-bottom: 20px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <label class="form-label" style="margin: 0;">Margem da empresa</label>
+                <label class="form-label" style="margin: 0;">Margem real do job</label>
                 <span id="calc-margem-val" style="font-size: 20px; font-weight: 800; color: var(--accent); font-family: var(--font-mono);">30%</span>
               </div>
               <input type="range" id="calc-margem" min="10" max="70" value="30" step="1"
-                style="width: 100%; accent-color: var(--accent); height: 4px; cursor: pointer;">
+                style="width: 100%; accent-color: var(--accent); height: 4px; cursor: default; pointer-events: none;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--dim); font-family: var(--font-mono); margin-top: 4px;">
-                <span>10% (risco)</span><span>30% (padrão)</span><span>70% (premium)</span>
-              </div>
-              <div style="display: flex; gap: 8px; margin-top: 10px;">
-                <button class="btn btn-ghost" style="font-size: 11px; padding: 5px 10px;" onclick="setMargem(25)">25%</button>
-                <button class="btn btn-ghost" style="font-size: 11px; padding: 5px 10px;" onclick="setMargem(30)">30% ←padrão</button>
-                <button class="btn btn-ghost" style="font-size: 11px; padding: 5px 10px;" onclick="setMargem(40)">40%</button>
-                <button class="btn btn-ghost" style="font-size: 11px; padding: 5px 10px;" onclick="setMargem(50)">50%</button>
+                <span>10%</span><span>← calculado automaticamente</span><span>70%</span>
               </div>
             </div>
 
@@ -644,7 +646,7 @@ select.filter {
 
           <!-- Valor a cobrar -->
           <div class="panel" style="margin-bottom: 18px; background: linear-gradient(135deg, var(--card) 0%, rgba(200,241,53,0.06) 100%); border-color: rgba(200,241,53,0.2);">
-            <div class="kpi-label">Valor a cobrar do cliente</div>
+            <div class="kpi-label">Valor cobrado do cliente (confirmado)</div>
             <div id="calc-valor-final" style="font-size: 52px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; font-family: var(--font-mono);">R$ 0</div>
             <div style="margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
               <div style="text-align: center;">
@@ -1369,11 +1371,118 @@ function calcValorFinal(bordero, margemPct, impostoPct, comissaoPct) {
 }
 
 function renderCalc() {
-  const bordero    = calcBorderoTotal();
-  const margemPct  = parseFloat(document.getElementById('calc-margem').value) || 30;
-  const impostoPct = parseFloat(document.getElementById('calc-imposto').value) || 15.5;
-  const comPct     = parseFloat(document.getElementById('calc-comissao').value) || 5;
-  const comTotal   = comPct * 3;
+  const valorCliente = parseFloat(document.getElementById('calc-valor-cliente').value) || 0;
+  const bordero      = parseFloat(document.getElementById('calc-bordero').value) || 0;
+  const impostoPct   = parseFloat(document.getElementById('calc-imposto').value) || 15.5;
+  const comPct       = parseFloat(document.getElementById('calc-comissao').value) || 5;
+  const comTotal     = comPct * 3;
+
+  document.getElementById('calc-imposto-val').textContent   = impostoPct + '%';
+  document.getElementById('calc-comissao-val').textContent  = comPct + '%';
+  document.getElementById('calc-comissao-total').textContent= comTotal.toFixed(1) + '%';
+
+  // Reverse-calculate from valor final
+  const imposto    = valorCliente * (impostoPct / 100);
+  const comissoes  = valorCliente * (comTotal / 100);
+  const lucro      = valorCliente - bordero - imposto - comissoes;
+  const margemReal = valorCliente > 0 ? (lucro / valorCliente * 100) : 0;
+  // Margem sobre custo (como o ESFERAS calcula)
+  const margemSCusto = bordero > 0 ? (lucro / bordero * 100) : 0;
+  // Margem % aplicada (o que foi configurado no ESFERAS)
+  const margemAplicada = valorCliente > 0 && bordero > 0
+    ? ((valorCliente - bordero) / valorCliente * 100) - impostoPct - comTotal
+    : 0;
+
+  // Update slider to reflect real margem
+  const margemSlider = Math.max(10, Math.min(70, Math.round(margemReal)));
+  document.getElementById('calc-margem').value = margemSlider;
+  document.getElementById('calc-margem-val').textContent = margemReal.toFixed(1) + '%';
+
+  const R = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+  const P = n => (Math.round(n*10)/10).toString().replace('.',',') + '%';
+
+  // Main result card — now shows valor cliente as the big number
+  document.getElementById('calc-valor-final').textContent = R(valorCliente);
+  document.getElementById('calc-r-bordero').textContent   = R(bordero);
+  document.getElementById('calc-r-imposto').textContent   = R(imposto);
+  document.getElementById('calc-r-comissoes').textContent = R(comissoes);
+
+  // Breakdown
+  document.getElementById('cr-valor').textContent      = R(valorCliente);
+  document.getElementById('cr-custo').textContent      = '− ' + R(bordero);
+  document.getElementById('cr-imposto').textContent    = '− ' + R(imposto);
+  document.getElementById('cr-comissoes').textContent  = '− ' + R(comissoes);
+  document.getElementById('cr-lucro').textContent      = R(lucro);
+  document.getElementById('cr-lucro').style.color      = lucro >= 0 ? 'var(--accent)' : 'var(--red)';
+  document.getElementById('cr-margem-real').textContent= P(margemReal);
+  document.getElementById('cr-margem-real').style.color= margemReal >= 10 ? 'var(--green)' : margemReal >= 0 ? 'var(--yellow)' : 'var(--red)';
+
+  // Piso
+  const piso    = bordero / (1 - (impostoPct + comTotal) / 100);
+  const pisoSeg = bordero / (1 - (5 + impostoPct + comTotal) / 100);
+  document.getElementById('calc-piso').textContent     = R(piso);
+  document.getElementById('calc-piso-sub').textContent = `Abaixo de ${R(piso)} o job dá prejuízo · Piso seguro (5% lucro): ${R(pisoSeg)}`;
+
+  // Semáforo
+  let icon, label, sub, borderColor;
+  if (margemReal >= 25) {
+    icon = '🟢'; label = 'Job saudável ✓'; borderColor = 'rgba(52,211,153,0.3)';
+    sub = `Margem real de ${P(margemReal)} — acima do mínimo seguro`;
+  } else if (margemReal >= 8) {
+    icon = '🟡'; label = 'Job no limite ⚠'; borderColor = 'rgba(251,191,36,0.3)';
+    sub = `Margem real de ${P(margemReal)} — cobre custos mas sobra pouco`;
+  } else if (lucro >= 0) {
+    icon = '🟠'; label = 'Margem muito baixa'; borderColor = 'rgba(251,146,60,0.3)';
+    sub = `Lucro real de ${R(lucro)} — verifique se vale a pena`;
+  } else {
+    icon = '🔴'; label = 'Job no prejuízo ✗'; borderColor = 'rgba(248,113,113,0.3)';
+    sub = `Prejuízo de ${R(Math.abs(lucro))} — valor cobrado não cobre os custos`;
+  }
+  document.getElementById('semaforo-icon').textContent  = icon;
+  document.getElementById('semaforo-label').textContent = label;
+  document.getElementById('semaforo-sub').textContent   = sub;
+  document.getElementById('calc-semaforo').style.borderColor = borderColor;
+
+  // Tabela comparativa — mostra o que deveria cobrar em cada cenário
+  const cenarios = [
+    { label:'Prejuízo (não fazer)', margem:0,  color:'var(--red)' },
+    { label:'Piso mínimo',          margem:5,  color:'var(--red)' },
+    { label:'Piso seguro',          margem:10, color:'var(--yellow)' },
+    { label:'Mínimo recomendado',   margem:20, color:'var(--yellow)' },
+    { label:'Standard ← padrão',   margem:30, color:'var(--accent)', bold:true },
+    { label:'Bom',                  margem:40, color:'var(--green)' },
+    { label:'Premium',              margem:50, color:'var(--green)' },
+  ];
+
+  // Highlight current job row
+  document.getElementById('calc-tabela').innerHTML = [
+    // Current job row (highlighted)
+    `<tr style="background:rgba(200,241,53,0.08);border-bottom:2px solid rgba(200,241,53,0.3);">
+      <td style="padding:13px 14px;font-size:13px;font-weight:700;color:var(--accent)">← Este job (ESFERAS)</td>
+      <td style="padding:13px 14px;font-size:12px;font-family:var(--font-mono);color:var(--accent)">${P(margemReal)}</td>
+      <td style="padding:13px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;font-weight:700">${R(valorCliente)}</td>
+      <td style="padding:13px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;font-weight:700;color:${lucro>=0?'var(--accent)':'var(--red)'}">${R(lucro)}</td>
+      <td style="padding:13px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:${margemReal>=10?'var(--green)':'var(--red)'}">${P(margemReal)}</td>
+      <td style="padding:13px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:${margemReal>=25?'var(--green)':margemReal>=8?'var(--yellow)':'var(--red)'}">${margemReal>=25?'🟢 Saudável':margemReal>=8?'🟡 Limite':'🔴 Prejuízo'}</td>
+    </tr>`,
+    ...cenarios.map(c => {
+      const v2  = calcValorFinal(bordero, c.margem, impostoPct, comPct);
+      const l2  = v2 - bordero - v2*(impostoPct/100) - v2*(comTotal/100);
+      const mr2 = v2 > 0 ? (l2/v2*100) : 0;
+      const w   = c.bold ? 'font-weight:700;' : '';
+      let status = l2 < 0 ? '🔴 Prejuízo' : mr2 < 8 ? '🟡 Limite' : '🟢 Viável';
+      let sc = l2 < 0 ? 'var(--red)' : mr2 < 8 ? 'var(--yellow)' : 'var(--green)';
+      return `<tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:11px 14px;font-size:13px;${w}color:${c.color}">${c.label}</td>
+        <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);color:${c.color}">${c.margem}%</td>
+        <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;${w}">${R(v2)}</td>
+        <td style="padding:11px 14px;font-size:13px;font-family:var(--font-mono);text-align:right;color:${l2>=0?'var(--green)':'var(--red)'};${w}">${R(l2)}</td>
+        <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:right;color:${l2>=0?'var(--green)':'var(--red)'}">${P(mr2)}</td>
+        <td style="padding:11px 14px;font-size:12px;font-family:var(--font-mono);text-align:center;color:${sc}">${status}</td>
+      </tr>`;
+    })
+  ].join('');
+}
 
   document.getElementById('calc-margem-val').textContent    = margemPct + '%';
   document.getElementById('calc-imposto-val').textContent   = impostoPct + '%';
@@ -1460,6 +1569,7 @@ function setMargem(val) {
 }
 
 document.getElementById('calc-bordero').addEventListener('input', renderCalc);
+document.getElementById('calc-valor-cliente').addEventListener('input', renderCalc);
 ['calc-margem','calc-imposto','calc-comissao'].forEach(id => {
   document.getElementById(id).addEventListener('input', renderCalc);
 });
