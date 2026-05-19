@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey, Listen — Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --sidebar: #141414;
+  --card: #1a1a1a;
+  --card2: #202020;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0f0f0;
+  --muted: #666;
+  --dim: #444;
+  --accent: #c8f135;
+  --accent-dark: #0e1500;
+  --green: #34d399;
+  --red: #f87171;
+  --blue: #60a5fa;
+  --yellow: #fbbf24;
+  --font-head: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: var(--font-head); background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; font-size: 14px; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 200px; min-width: 200px; background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; padding: 24px 0;
+  height: 100vh; overflow-y: auto;
+}
+.brand {
+  padding: 0 20px 28px; border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.brand-name {
+  font-size: 16px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--accent); line-height: 1;
+}
+.brand-sub { font-size: 10px; color: var(--muted); font-family: var(--font-mono); margin-top: 4px; letter-spacing: 0.05em; }
+
+.nav-section { padding: 0 12px; margin-bottom: 24px; }
+.nav-label { font-size: 9px; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); padding: 0 8px; margin-bottom: 6px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px; border-radius: 8px; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  transition: all 0.15s; border: 1px solid transparent;
+}
+.nav-item:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+.nav-item.active { color: var(--accent-dark); background: var(--accent); border-color: var(--accent); }
+.nav-item.active .nav-icon { color: var(--accent-dark); }
+.nav-icon { font-size: 15px; width: 18px; text-align: center; }
+.nav-badge {
+  margin-left: auto; background: rgba(255,255,255,0.1);
+  color: var(--muted); font-size: 10px; font-family: var(--font-mono);
+  padding: 2px 6px; border-radius: 10px;
+}
+.nav-item.active .nav-badge { background: rgba(0,0,0,0.2); color: var(--accent-dark); }
+
+.sidebar-bottom { margin-top: auto; padding: 16px 20px; border-top: 1px solid var(--border); }
+.live-dot { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ── MAIN ── */
+.main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+.topbar {
+  padding: 20px 32px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: var(--bg); z-index: 10;
+  backdrop-filter: blur(12px);
+}
+.page-title { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.page-sub { font-size: 12px; color: var(--muted); font-family: var(--font-mono); margin-top: 2px; }
+.topbar-actions { display: flex; gap: 10px; align-items: center; }
+
+.btn {
+  padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: none; font-family: var(--font-head);
+  transition: all 0.15s; letter-spacing: 0.02em;
+}
+.btn-primary { background: var(--accent); color: var(--accent-dark); }
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
+.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+select.filter {
+  background: var(--card); color: var(--text); border: 1px solid var(--border2);
+  padding: 7px 12px; border-radius: 8px; font-size: 12px; font-family: var(--font-head);
+  cursor: pointer;
+}
+
+.content { padding: 28px 32px; flex: 1; }
+.view { display: none; }
+.view.active { display: block; }
+
+/* ── KPI GRID ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+.kpi-card {
+  background: var(--card); border-radius: 12px;
+  padding: 18px 20px; border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.kpi-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent); opacity: 0;
+}
+.kpi-card.highlight::before { opacity: 1; }
+.kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); margin-bottom: 10px; }
+.kpi-value { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.kpi-value.accent { color: var(--accent); }
+.kpi-value.green { color: var(--green); }
+.kpi-value.red { color: var(--red); }
+.kpi-value.blue { color: var(--blue); }
+.kpi-sub { font-size: 11px; color: var(--muted); font-family: var(--font-mono); margin-top: 8px; }
+
+/* ── PIPELINE TABLE ── */
+.filters-bar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
+.search-box {
+  background: var(--card); border: 1px solid var(--border2); border-radius: 8px;
+  padding: 8px 14px; font-size: 12px; color: var(--text); font-family: var(--font-head);
+  width: 220px;
+}
+.search-box::placeholder { color: var(--muted); }
+.search-box:focus { outline: 1px solid var(--accent); }
+
+.table-wrap { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.table-wrap table { width: 100%; border-collapse: collapse; }
+.table-wrap th {
+  text-align: left; padding: 12px 16px; font-size: 10px; font-weight: 600;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+  font-family: var(--font-mono); border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.2);
+}
+.table-wrap td { padding: 13px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.table-wrap tr:last-child td { border-bottom: none; }
+.table-wrap tr:hover td { background: rgba(255,255,255,0.02); }
+.num { text-align: right; font-family: var(--font-mono); font-size: 12px; }
+
+.status-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  font-family: var(--font-mono);
+}
+.status-orcado    { background: rgba(251,191,36,0.12); color: var(--yellow); }
+.status-aprovado  { background: rgba(96,165,250,0.12); color: var(--blue); }
+.status-producao  { background: rgba(200,241,53,0.12); color: var(--accent); }
+.status-entregue  { background: rgba(52,211,153,0.12); color: var(--green); }
+.status-perdido   { background: rgba(248,113,113,0.12); color: var(--red); }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--muted); font-family: var(--font-mono); font-size: 13px; }
+
+/* ── KANBAN ── */
+.kanban-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
+.kanban-col { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.kanban-header {
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.kanban-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.kanban-count {
+  background: rgba(255,255,255,0.08); color: var(--muted);
+  font-size: 11px; font-family: var(--font-mono); padding: 2px 8px; border-radius: 10px;
+}
+.kanban-cards { padding: 12px; min-height: 200px; display: flex; flex-direction: column; gap: 10px; }
+.kanban-card {
+  background: var(--card2); border-radius: 8px; border: 1px solid var(--border);
+  padding: 14px; cursor: pointer; transition: all 0.15s;
+}
+.kanban-card:hover { border-color: var(--border2); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.kanban-card-client { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.kanban-card-tipo { font-size: 11px; color: var(--muted); font-family: var(--font-mono); margin-bottom: 10px; }
+.kanban-card-value { font-size: 14px; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+.kanban-card-margem { font-size: 10px; color: var(--muted); font-family: var(--font-mono); margin-top: 4px; }
+
+/* ── DASHBOARD ── */
+.dash-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin-bottom: 18px; }
+.dash-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.panel { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 20px; }
+.panel-title { font-size: 13px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.panel-title span { color: var(--muted); font-size: 11px; font-family: var(--font-mono); font-weight: 400; }
+.chart-box { height: 260px; position: relative; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100;
+  display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--card); border-radius: 16px; border: 1px solid var(--border2);
+  padding: 28px; width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto;
+}
+.modal-title { font-size: 18px; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
+.form-row { margin-bottom: 14px; }
+.form-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-mono); margin-bottom: 6px; display: block; }
+.form-input {
+  width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px;
+  padding: 10px 14px; color: var(--text); font-size: 13px; font-family: var(--font-head);
+}
+.form-input:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: var(--card);
+  border: 1px solid var(--accent); border-radius: 10px; padding: 12px 20px;
+  font-size: 13px; font-weight: 600; color: var(--accent); z-index: 200;
+  transform: translateY(80px); transition: transform 0.3s; pointer-events: none;
+}
+.toast.show { transform: translateY(0); }
+
+.loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--muted); font-family: var(--font-mono); font-size: 13px; gap: 10px; }
+.spinner { width: 16px; height: 16px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.margem-bar { height: 3px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.margem-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+
+/* ── RESUMO RAPIDO ── */
+.rr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.rr-big {
+  background: var(--card); border-radius: 12px; border: 1px solid var(--border);
+  padding: 24px; position: relative; overflow: hidden;
+}
+.rr-big-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); margin-bottom: 12px; }
+.rr-big-value { font-size: 42px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.rr-big-sub { font-size: 12px; color: var(--muted); font-family: var(--font-mono); margin-top: 10px; }
+.rr-accent { border-color: rgba(200,241,53,0.2); }
+.rr-accent .rr-big-value { color: var(--accent); }
+.rr-blue { border-color: rgba(96,165,250,0.2); }
+.rr-blue .rr-big-value { color: var(--blue); }
+.meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+.meta-card { background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 16px; }
+.meta-card-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); margin-bottom: 8px; }
+.meta-card-value { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.meta-card.breakeven { border-left: 3px solid var(--red); }
+.meta-card.saudavel { border-left: 3px solid var(--accent); }
+.meta-card.saudavel .meta-card-value { color: var(--accent); }
+.meta-card.crescer { border-left: 3px solid var(--blue); }
+.meta-card.crescer .meta-card-value { color: var(--blue); }
+.meta-explica { background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 16px; font-size: 12px; color: var(--muted); font-family: var(--font-mono); line-height: 1.8; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="brand">
+    <div class="brand-name">hey, listen</div>
+    <div class="brand-sub">STUDIO · 2025–26</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Visão</div>
+    <div class="nav-item active" data-view="pipeline">
+      <span class="nav-icon">◈</span> Pipeline
+      <span class="nav-badge" id="badge-pipeline">0</span>
+    </div>
+    <div class="nav-item" data-view="kanban">
+      <span class="nav-icon">⊞</span> Kanban
+    </div>
+    <div class="nav-item" data-view="dashboard">
+      <span class="nav-icon">◎</span> Dashboard
+    </div>
+    <div class="nav-item" data-view="resumo">
+      <span class="nav-icon">⚡</span> Resumo Rápido
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Filtrar por tipo</div>
+    <div class="nav-item tipo-filter active-tipo" data-tipo="todos">
+      <span class="nav-icon">·</span> Todos
+      <span class="nav-badge" id="badge-todos">0</span>
+    </div>
+    <div class="nav-item tipo-filter" data-tipo="Trilha original">
+      <span class="nav-icon">♫</span> Trilha
+      <span class="nav-badge" id="badge-trilha">0</span>
+    </div>
+    <div class="nav-item tipo-filter" data-tipo="Sound design">
+      <span class="nav-icon">◉</span> Sound design
+      <span class="nav-badge" id="badge-sound">0</span>
+    </div>
+    <div class="nav-item tipo-filter" data-tipo="Jingle">
+      <span class="nav-icon">♪</span> Jingle
+      <span class="nav-badge" id="badge-jingle">0</span>
+    </div>
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="live-dot">
+      <div class="dot"></div>
+      Ao vivo
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PIPELINE VIEW -->
+  <div id="view-pipeline" class="view active">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Pipeline de Projetos</div>
+        <div class="page-sub">Atualizado em tempo real</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary" onclick="openModal()">+ Novo job</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="kpi-grid" id="pipeline-kpis">
+        <div class="kpi-card highlight">
+          <div class="kpi-label">Total Aprovado</div>
+          <div class="kpi-value accent" id="kpi-total">R$0</div>
+          <div class="kpi-sub" id="kpi-total-pct">0% da meta</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Pipeline Ativo</div>
+          <div class="kpi-value blue" id="kpi-pipe">R$0</div>
+          <div class="kpi-sub" id="kpi-pipe-count">0 projetos</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Aprovados</div>
+          <div class="kpi-value green" id="kpi-aprov">0</div>
+          <div class="kpi-sub">projetos confirmados</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Perdidos</div>
+          <div class="kpi-value red" id="kpi-perdidos">0</div>
+          <div class="kpi-sub">não convertidos</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Meta Restante</div>
+          <div class="kpi-value" id="kpi-meta-rest">R$0</div>
+          <div class="kpi-sub" id="kpi-meta-label">para atingir a meta</div>
+        </div>
+      </div>
+
+      <div class="filters-bar">
+        <input class="search-box" type="text" placeholder="Buscar cliente ou agência..." id="search-input">
+        <select class="filter" id="filter-status">
+          <option value="">Todos os status</option>
+          <option value="orcado">Orçado</option>
+          <option value="aprovado">Aprovado</option>
+          <option value="producao">Em produção</option>
+          <option value="entregue">Entregue</option>
+          <option value="perdido">Perdido</option>
+        </select>
+        <select class="filter" id="filter-tipo">
+          <option value="">Todos os tipos</option>
+          <option value="Trilha original">Trilha original</option>
+          <option value="Sound design">Sound design</option>
+          <option value="Jingle">Jingle/ID sonora</option>
+          <option value="Trocas Oferta">Extras/Trocas</option>
+        </select>
+        <select class="filter" id="filter-mes">
+          <option value="">Todos os meses</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Agência</th>
+              <th>Tipo</th>
+              <th class="num">Valor</th>
+              <th>Status</th>
+              <th class="num">Margem</th>
+              <th>Mês</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="pipeline-tbody">
+            <tr><td colspan="8"><div class="loading"><div class="spinner"></div> Carregando...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- KANBAN VIEW -->
+  <div id="view-kanban" class="view">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Kanban</div>
+        <div class="page-sub">Arraste os jobs entre as colunas</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary" onclick="openModal()">+ Novo job</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="kanban-board" id="kanban-board">
+        <div class="loading"><div class="spinner"></div> Carregando...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div id="view-dashboard" class="view">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Dashboard Financeiro</div>
+        <div class="page-sub">Dados históricos mensais</div>
+      </div>
+      <div class="topbar-actions">
+        <select class="filter" id="dash-periodo">
+          <option value="ytd">Operação completa</option>
+          <option value="ano">2026</option>
+          <option value="trimestre">Trimestre atual</option>
+          <option value="mes">Mês atual</option>
+        </select>
+      </div>
+    </div>
+    <div class="content">
+      <div class="kpi-grid" id="dash-kpis">
+        <div class="kpi-card highlight">
+          <div class="kpi-label">Receita Total</div>
+          <div class="kpi-value accent" id="dk-receita">—</div>
+          <div class="kpi-sub" id="dk-receita-s">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Gastos Totais</div>
+          <div class="kpi-value" id="dk-gastos">—</div>
+          <div class="kpi-sub">Fixos + variáveis</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Resultado</div>
+          <div class="kpi-value" id="dk-resultado">—</div>
+          <div class="kpi-sub" id="dk-resultado-s">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Margem Lucro</div>
+          <div class="kpi-value" id="dk-margem">—</div>
+          <div class="kpi-sub">Sobre receita bruta</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Ponto Equilíbrio</div>
+          <div class="kpi-value" id="dk-pe">—</div>
+          <div class="kpi-sub">Receita p/ zerar</div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="panel">
+          <div class="panel-title">Movimentações por período <span id="ch-bar-period"></span></div>
+          <div class="chart-box"><canvas id="ch-bar"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Composição dos Gastos</div>
+          <div class="chart-box"><canvas id="ch-pie"></canvas></div>
+        </div>
+      </div>
+      <div class="dash-grid-3">
+        <div class="panel">
+          <div class="panel-title">Lucro Operacional</div>
+          <div class="chart-box" style="height:200px"><canvas id="ch-lucro"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Margem de Contribuição %</div>
+          <div class="chart-box" style="height:200px"><canvas id="ch-mc"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Receita vs. Ponto de Equilíbrio</div>
+          <div class="chart-box" style="height:200px"><canvas id="ch-pe-chart"></canvas></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">DRE — Demonstrativo de Resultado <span id="dre-period-label"></span></div>
+        <div style="overflow-x:auto">
+          <table id="dre-table" style="min-width:700px"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMO RÁPIDO VIEW -->
+  <div id="view-resumo" class="view">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Resumo Rápido</div>
+        <div class="page-sub">O essencial de um relance</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="rr-grid">
+        <div class="rr-big rr-accent">
+          <div class="rr-big-label">Faturamento Bruto (jobs reais)</div>
+          <div class="rr-big-value" id="rr-bruto">—</div>
+          <div class="rr-big-sub" id="rr-bruto-sub">—</div>
+        </div>
+        <div class="rr-big rr-blue">
+          <div class="rr-big-label">Faturamento Líquido (saldo após custos do job)</div>
+          <div class="rr-big-value" id="rr-liquido">—</div>
+          <div class="rr-big-sub" id="rr-liquido-sub">—</div>
+        </div>
+      </div>
+      <div class="panel" style="margin-bottom:18px">
+        <div class="panel-title">Meta para o próximo mês</div>
+        <div class="meta-grid">
+          <div class="meta-card breakeven">
+            <div class="meta-card-label">Sobreviver (break-even)</div>
+            <div class="meta-card-value" id="meta-be">—</div>
+            <div class="kpi-sub" style="margin-top:6px">Lucro = R$ 0</div>
+          </div>
+          <div class="meta-card saudavel">
+            <div class="meta-card-label">Saudável (+30%)</div>
+            <div class="meta-card-value" id="meta-sa">—</div>
+            <div class="kpi-sub" style="margin-top:6px">Lucro = 30% do custo fixo</div>
+          </div>
+          <div class="meta-card crescer">
+            <div class="meta-card-label">Crescer (+60%)</div>
+            <div class="meta-card-value" id="meta-cr">—</div>
+            <div class="kpi-sub" style="margin-top:6px">Lucro = 60% do custo fixo</div>
+          </div>
+        </div>
+        <div class="meta-explica" id="meta-explica">Carregando...</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div class="panel">
+          <div class="panel-title">Status mês a mês</div>
+          <div id="rr-meses"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Saúde do negócio</div>
+          <div id="rr-saude"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- MODAL NOVO JOB -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Novo Job</div>
+    <div class="form-grid">
+      <div class="form-row">
+        <label class="form-label">Cliente *</label>
+        <input class="form-input" id="f-cliente" placeholder="ex: iFood">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Agência</label>
+        <input class="form-input" id="f-agencia" placeholder="ex: Africa">
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-row">
+        <label class="form-label">Tipo *</label>
+        <select class="form-input" id="f-tipo">
+          <option value="Trilha original">Trilha original</option>
+          <option value="Sound design">Sound design</option>
+          <option value="Jingle">Jingle / ID sonora</option>
+          <option value="Trocas Oferta">Extras / Trocas</option>
+          <option value="Veiculação TV">Veiculação TV</option>
+          <option value="Outros">Outros</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Status *</label>
+        <select class="form-input" id="f-status">
+          <option value="orcado">Orçado</option>
+          <option value="aprovado">Aprovado</option>
+          <option value="producao">Em produção</option>
+          <option value="entregue">Entregue</option>
+          <option value="perdido">Perdido</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-row">
+        <label class="form-label">Valor aprovado (R$) *</label>
+        <input class="form-input" id="f-valor" type="number" placeholder="0">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Custo variável (R$)</label>
+        <input class="form-input" id="f-custo" type="number" placeholder="0">
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Mês referência</label>
+      <select class="form-input" id="f-mes">
+        <option value="">— selecionar —</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Notas</label>
+      <input class="form-input" id="f-notas" placeholder="Observações internas...">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" id="modal-save-btn" onclick="saveJob()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const SUPABASE_URL  = 'https://vguujuhfcclcgunlmfcg.supabase.co';
+const SUPABASE_KEY  = 'sb_publishable_odSe5W1rddCxuI_YTA7u5w_9xXsC1J5';
+const META_ANUAL    = 1200000;
+const VAR_RATIO     = 0.476; // custo variável médio real dos jobs históricos
+
+// ============================================================
+// API
+// ============================================================
+async function api(method, table, body, query='') {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${query}`, {
+    method, headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': method === 'POST' ? 'return=representation' : '',
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (!res.ok) { const e = await res.text(); throw new Error(e); }
+  return method === 'DELETE' ? null : (res.status === 204 ? null : res.json());
+}
+
+const getJobs  = () => api('GET', 'jobs', null, '?order=created_at.desc');
+const getMeses = () => api('GET', 'meses', null, '?order=mes.asc');
+const insertJob = (j) => api('POST', 'jobs', j);
+const updateJob = (id, j) => api('PATCH', 'jobs', j, `?id=eq.${id}`);
+const deleteJob = (id) => api('DELETE', 'jobs', null, `?id=eq.${id}`);
+
+// ============================================================
+// STATE
+// ============================================================
+let JOBS = [], MESES = [];
+let editingId = null;
+let currentTipoFilter = 'todos';
+const charts = {};
+
+// ============================================================
+// FORMATTERS
+// ============================================================
+const fmtBRL = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+const fmtK = n => {
+  const s = n < 0 ? '-' : ''; const a = Math.abs(n);
+  if (a >= 1e6) return s + 'R$ ' + (a/1e6).toFixed(1).replace('.',',') + 'M';
+  if (a >= 1e3) return s + 'R$ ' + (a/1e3).toFixed(1).replace('.',',') + 'k';
+  return s + 'R$ ' + Math.round(a);
+};
+const fmtPct = n => (Math.round(n*10)/10).toString().replace('.',',') + '%';
+
+// ============================================================
+// INIT
+// ============================================================
+async function init() {
+  try {
+    [JOBS, MESES] = await Promise.all([getJobs(), getMeses()]);
+    populateMesSelects();
+    renderAll();
+    subscribeRealtime();
+  } catch(e) {
+    console.error(e);
+    showToast('Erro ao conectar. Verifique a configuração.', true);
+  }
+}
+
+function populateMesSelects() {
+  const selects = [document.getElementById('filter-mes'), document.getElementById('f-mes')];
+  for (const s of selects) {
+    const existing = s.options.length;
+    if (existing > 1) continue;
+    for (const m of MESES) {
+      const o = document.createElement('option');
+      o.value = m.mes; o.textContent = m.label;
+      s.appendChild(o);
+    }
+  }
+}
+
+// ============================================================
+// REALTIME
+// ============================================================
+function subscribeRealtime() {
+  // Simple polling every 15s as fallback (Supabase Realtime requires extra lib)
+  setInterval(async () => {
+    JOBS = await getJobs();
+    renderAll();
+  }, 15000);
+}
+
+// ============================================================
+// RENDER ALL
+// ============================================================
+function renderAll() {
+  renderPipelineKPIs();
+  renderPipelineTable();
+  renderKanban();
+  renderDashboard();
+  renderResumoRapido();
+  updateBadges();
+}
+
+// ============================================================
+// PIPELINE KPIs
+// ============================================================
+function renderPipelineKPIs() {
+  const entregues = JOBS.filter(j => j.status === 'entregue');
+  const ativos    = JOBS.filter(j => ['orcado','aprovado','producao'].includes(j.status));
+  const aprovados = JOBS.filter(j => j.status === 'aprovado');
+  const perdidos  = JOBS.filter(j => j.status === 'perdido');
+
+  const totalAprov = entregues.reduce((s,j) => s + +j.valor, 0);
+  const pipeVal    = ativos.reduce((s,j) => s + +j.valor, 0);
+  const metaRest   = Math.max(0, META_ANUAL - totalAprov);
+  const pct        = Math.min(100, (totalAprov / META_ANUAL) * 100);
+
+  document.getElementById('kpi-total').textContent     = fmtK(totalAprov);
+  document.getElementById('kpi-total-pct').textContent = fmtPct(pct) + ' da meta de ' + fmtK(META_ANUAL);
+  document.getElementById('kpi-pipe').textContent      = fmtK(pipeVal);
+  document.getElementById('kpi-pipe-count').textContent= ativos.length + ' projetos aguardando';
+  document.getElementById('kpi-aprov').textContent     = aprovados.length;
+  document.getElementById('kpi-perdidos').textContent  = perdidos.length;
+  document.getElementById('kpi-meta-rest').textContent = fmtK(metaRest);
+  document.getElementById('kpi-meta-label').textContent= 'para atingir R$ ' + fmtK(META_ANUAL);
+}
+
+// ============================================================
+// PIPELINE TABLE
+// ============================================================
+function renderPipelineTable() {
+  const search     = document.getElementById('search-input').value.toLowerCase();
+  const filterSt   = document.getElementById('filter-status').value;
+  const filterTipo = document.getElementById('filter-tipo').value;
+  const filterMes  = document.getElementById('filter-mes').value;
+
+  let jobs = JOBS.filter(j => {
+    if (search && !j.cliente.toLowerCase().includes(search) && !(j.agencia||'').toLowerCase().includes(search)) return false;
+    if (filterSt && j.status !== filterSt) return false;
+    if (filterTipo && !j.tipo.includes(filterTipo)) return false;
+    if (filterMes && j.mes_referencia !== filterMes) return false;
+    if (currentTipoFilter !== 'todos' && !j.tipo.toLowerCase().includes(currentTipoFilter.toLowerCase())) return false;
+    return true;
+  });
+
+  const tbody = document.getElementById('pipeline-tbody');
+  if (jobs.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state">Nenhum projeto encontrado.</div></td></tr>';
+    return;
+  }
+
+  const labelMap = { orcado:'Orçado', aprovado:'Aprovado', producao:'Em produção', entregue:'Entregue', perdido:'Perdido' };
+  tbody.innerHTML = jobs.map(j => {
+    const lucro = +j.lucro || (+j.valor - +j.custo_variavel);
+    const marg  = +j.valor > 0 ? (lucro / +j.valor * 100) : 0;
+    const margColor = marg >= 60 ? 'var(--green)' : marg >= 40 ? 'var(--accent)' : 'var(--red)';
+    const mesLabel = MESES.find(m => m.mes === j.mes_referencia)?.label || j.mes_referencia || '—';
+    return `<tr>
+      <td style="font-weight:700">${j.cliente}</td>
+      <td style="color:var(--muted)">${j.agencia || '—'}</td>
+      <td style="color:var(--muted);font-size:12px">${j.tipo}</td>
+      <td class="num">${fmtBRL(+j.valor)}</td>
+      <td><span class="status-badge status-${j.status}">${labelMap[j.status]||j.status}</span></td>
+      <td class="num" style="color:${margColor};font-weight:700">${fmtPct(marg)}</td>
+      <td style="color:var(--muted);font-size:12px;font-family:var(--font-mono)">${mesLabel}</td>
+      <td>
+        <button onclick="editJob('${j.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Editar">✎</button>
+        <button onclick="confirmDelete('${j.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px" title="Deletar">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ============================================================
+// KANBAN
+// ============================================================
+function renderKanban() {
+  const columns = [
+    { status: 'orcado',   label: 'Orçado',       color: 'var(--yellow)' },
+    { status: 'aprovado', label: 'Aprovado',      color: 'var(--blue)' },
+    { status: 'producao', label: 'Em produção',   color: 'var(--accent)' },
+    { status: 'entregue', label: 'Entregue',      color: 'var(--green)' },
+  ];
+
+  const board = document.getElementById('kanban-board');
+  board.innerHTML = columns.map(col => {
+    const jobs = JOBS.filter(j => j.status === col.status);
+    const cards = jobs.length === 0
+      ? '<div style="color:var(--muted);font-size:12px;font-family:var(--font-mono);text-align:center;padding:20px 0">Nenhum job</div>'
+      : jobs.map(j => {
+          const lucro = +j.lucro || (+j.valor - +j.custo_variavel);
+          const marg = +j.valor > 0 ? (lucro / +j.valor * 100) : 0;
+          const margColor = marg >= 60 ? '#34d399' : marg >= 40 ? '#c8f135' : '#f87171';
+          return `<div class="kanban-card" onclick="editJob('${j.id}')">
+            <div class="kanban-card-client">${j.cliente}</div>
+            <div class="kanban-card-tipo">${j.tipo}</div>
+            <div class="kanban-card-value">${fmtBRL(+j.valor)}</div>
+            <div class="margem-bar"><div class="margem-fill" style="width:${Math.min(100,marg)}%;background:${margColor}"></div></div>
+            <div class="kanban-card-margem">Margem: ${fmtPct(marg)}</div>
+          </div>`;
+        }).join('');
+
+    return `<div class="kanban-col">
+      <div class="kanban-header">
+        <div class="kanban-title" style="color:${col.color}">${col.label}</div>
+        <div class="kanban-count">${jobs.length}</div>
+      </div>
+      <div class="kanban-cards">${cards}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// DASHBOARD FINANCEIRO
+// ============================================================
+function getActiveMeses() {
+  const p = document.getElementById('dash-periodo').value;
+  const filled = MESES.filter(m => m.receita > 0 || m.salario > 0);
+  if (!filled.length) return MESES;
+  const last = filled[filled.length-1];
+  if (p === 'ytd') return filled;
+  if (p === 'mes') return filled.slice(-1);
+  if (p === 'trimestre') return filled.slice(-3);
+  if (p === 'ano') return filled.filter(m => m.mes.startsWith('2026'));
+  return filled;
+}
+
+function calcMes(m) {
+  const fixo = m.salario + m.contab + m.esferas + m.aprosom + m.adm;
+  const custoVar = m.receita * VAR_RATIO;
+  const mc = m.receita - custoVar;
+  const lucroOp = mc - fixo;
+  return { receita: m.receita, fixo, custoVar, mc, lucroOp,
+           mcPct: m.receita > 0 ? (mc/m.receita*100) : 0 };
+}
+
+function renderDashboard() {
+  const meses = getActiveMeses();
+  const totals = meses.map(calcMes);
+
+  const totReceita  = totals.reduce((s,m) => s+m.receita, 0);
+  const totFixo     = totals.reduce((s,m) => s+m.fixo, 0);
+  const totVar      = totals.reduce((s,m) => s+m.custoVar, 0);
+  const totMC       = totals.reduce((s,m) => s+m.mc, 0);
+  const totLucro    = totals.reduce((s,m) => s+m.lucroOp, 0);
+  const margemLucro = totReceita > 0 ? (totLucro/totReceita*100) : 0;
+  const pe = totReceita > 0 ? totFixo / (totMC/totReceita) : 0;
+
+  document.getElementById('dk-receita').textContent    = fmtK(totReceita);
+  document.getElementById('dk-receita-s').textContent  = meses.length + ' meses';
+  document.getElementById('dk-gastos').textContent     = fmtK(totFixo + totVar);
+  document.getElementById('dk-resultado').textContent  = fmtK(totLucro);
+  document.getElementById('dk-resultado').className    = 'kpi-value ' + (totLucro >= 0 ? 'green' : 'red');
+  document.getElementById('dk-margem').textContent     = fmtPct(margemLucro);
+  document.getElementById('dk-margem').className       = 'kpi-value ' + (margemLucro >= 0 ? 'green' : 'red');
+  document.getElementById('dk-pe').textContent         = fmtK(pe);
+
+  const labels = meses.map(m => m.label);
+  const grid = { color: 'rgba(255,255,255,0.04)' };
+  const tick = { color: '#555', font: { family: 'DM Mono', size: 10 } };
+
+  // Bar chart
+  destroyChart('bar');
+  charts.bar = new Chart(document.getElementById('ch-bar'), {
+    type: 'bar',
+    data: { labels, datasets: [
+      { label:'Receita', data: totals.map(m=>m.receita), backgroundColor:'#c8f135', borderRadius:4 },
+      { label:'Gastos',  data: totals.map(m=>m.fixo+m.custoVar), backgroundColor:'#f87171', borderRadius:4 }
+    ]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ color:'#666', boxWidth:10, boxHeight:10 }}},
+      scales:{ x:{ ticks:tick, grid:grid }, y:{ ticks:{...tick, callback:v=>fmtK(v)}, grid } }
+    }
+  });
+
+  // Pie
+  destroyChart('pie');
+  const catTotals = ['salario','esferas','aprosom','contab','adm'].map(k => meses.reduce((s,m)=>s+(+m[k]||0),0));
+  charts.pie = new Chart(document.getElementById('ch-pie'), {
+    type: 'doughnut',
+    data: { labels:['Salários','ESFERAS','Apro+Som','Contab.','ADM'],
+      datasets:[{ data:catTotals, backgroundColor:['#c8f135','#60a5fa','#34d399','#fbbf24','#f87171'], borderWidth:2, borderColor:'#1a1a1a' }]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'right', labels:{ color:'#666', font:{size:11}, boxWidth:10 }}}
+    }
+  });
+
+  // Lucro line
+  destroyChart('lucro');
+  charts.lucro = new Chart(document.getElementById('ch-lucro'), {
+    type:'line',
+    data:{ labels, datasets:[{ label:'Lucro Op.', data:totals.map(m=>m.lucroOp),
+      borderColor:'#c8f135', backgroundColor:'rgba(200,241,53,0.08)', fill:true, tension:0.3, borderWidth:2, pointRadius:3, pointBackgroundColor:'#c8f135' }]},
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ x:{ticks:tick,grid:grid}, y:{ticks:{...tick,callback:v=>fmtK(v)},grid} }
+    }
+  });
+
+  // MC% line
+  destroyChart('mc');
+  charts.mc = new Chart(document.getElementById('ch-mc'), {
+    type:'line',
+    data:{ labels, datasets:[{ label:'MC%', data:totals.map(m=>m.mcPct),
+      borderColor:'#60a5fa', backgroundColor:'rgba(96,165,250,0.08)', fill:true, tension:0.3, borderWidth:2, pointRadius:3, pointBackgroundColor:'#60a5fa' }]},
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ x:{ticks:tick,grid:grid}, y:{ticks:{...tick,callback:v=>fmtPct(v)},grid,suggestedMin:0,suggestedMax:100} }
+    }
+  });
+
+  // PE chart
+  destroyChart('peChart');
+  const peMonthly = totals.map(m => m.receita > 0 ? m.fixo/(m.mc/m.receita) : 0);
+  charts.peChart = new Chart(document.getElementById('ch-pe-chart'), {
+    type:'bar',
+    data:{ labels, datasets:[
+      { label:'Receita', data:totals.map(m=>m.receita), backgroundColor:'#c8f135', borderRadius:4 },
+      { label:'PE', data:peMonthly, type:'line', borderColor:'#fbbf24', borderWidth:2, pointRadius:3, fill:false }
+    ]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ color:'#666', boxWidth:10, boxHeight:10 }}},
+      scales:{ x:{ticks:tick,grid:grid}, y:{ticks:{...tick,callback:v=>fmtK(v)},grid} }
+    }
+  });
+
+  // DRE table
+  const n = meses.length || 1;
+  const rows = [
+    { label:'Receita Bruta',             vals:meses.map(m=>m.receita), bold:true },
+    { label:'Custo Variável (estim.)',   vals:totals.map(m=>-m.custoVar) },
+    { label:'Margem de Contribuição',    vals:totals.map(m=>m.mc), bold:true, hi:true },
+    { label:'Custo Fixo',                vals:totals.map(m=>-m.fixo) },
+    { label:'  ↳ Salários',             vals:meses.map(m=>-m.salario), sub:true },
+    { label:'  ↳ ESFERAS',              vals:meses.map(m=>-m.esferas), sub:true },
+    { label:'  ↳ Apro+Som',             vals:meses.map(m=>-m.aprosom), sub:true },
+    { label:'  ↳ Contabilidade',        vals:meses.map(m=>-m.contab), sub:true },
+    { label:'  ↳ ADM/Assinaturas',      vals:meses.map(m=>-m.adm), sub:true },
+    { label:'Lucro Operacional',         vals:totals.map(m=>m.lucroOp), bold:true, hi:true },
+  ];
+  const t = document.getElementById('dre-table');
+  let html = `<thead><tr style="border-bottom:1px solid var(--border)">
+    <th style="text-align:left;padding:10px 14px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">Conta</th>
+    ${meses.map(m=>`<th style="text-align:right;padding:10px 10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">${m.label}</th>`).join('')}
+    <th style="text-align:right;padding:10px 14px;font-size:11px;color:var(--muted);font-family:var(--font-mono);font-weight:500">Total</th>
+  </tr></thead><tbody>`;
+  for (const r of rows) {
+    const sum = r.vals.reduce((s,v)=>s+v,0);
+    const cls = v => v < 0 ? 'color:var(--red)' : r.hi ? 'color:var(--accent)' : 'color:var(--text)';
+    html += `<tr style="border-bottom:1px solid var(--border);${r.sub?'opacity:0.7':''}${r.bold?';font-weight:700':''}">
+      <td style="padding:10px 14px;font-size:13px${r.sub?';font-size:12px;color:var(--muted)':''}">${r.label}</td>
+      ${r.vals.map(v=>`<td style="text-align:right;padding:10px 10px;font-size:12px;font-family:var(--font-mono);${cls(v)}">${fmtBRL(v)}</td>`).join('')}
+      <td style="text-align:right;padding:10px 14px;font-size:12px;font-family:var(--font-mono);font-weight:700;${cls(sum)}">${fmtBRL(sum)}</td>
+    </tr>`;
+  }
+  t.innerHTML = html + '</tbody>';
+}
+
+function destroyChart(k) { if(charts[k]){charts[k].destroy();charts[k]=null;} }
+
+// ============================================================
+// RESUMO RÁPIDO
+// ============================================================
+function renderResumoRapido() {
+  const bruto   = JOBS.reduce((s,j) => s + +j.valor, 0);
+  const liquido = JOBS.reduce((s,j) => s + (+j.lucro || (+j.valor - +j.custo_variavel)), 0);
+  const marg    = bruto > 0 ? (liquido/bruto*100) : 0;
+
+  document.getElementById('rr-bruto').textContent    = fmtBRL(bruto);
+  document.getElementById('rr-bruto-sub').innerHTML  = `<strong>${JOBS.length} jobs faturados</strong> · valor aprovado acumulado`;
+  document.getElementById('rr-liquido').textContent  = fmtBRL(liquido);
+  document.getElementById('rr-liquido-sub').innerHTML= `<strong>Margem real: ${fmtPct(marg)}</strong> · de cada R$ 100, R$ ${marg.toFixed(0)} viraram lucro`;
+
+  // Meta mês
+  const filled = MESES.filter(m => m.receita > 0 || m.salario > 0);
+  const recent = filled.slice(-3);
+  const avgFixo = recent.length > 0
+    ? recent.reduce((s,m) => s + m.salario + m.contab + m.esferas + m.aprosom + m.adm, 0) / recent.length
+    : 0;
+  const mcPct = bruto > 0 ? ((bruto - JOBS.reduce((s,j)=>s+(+j.custo_variavel),0)) / bruto * 100) : 63;
+  const be = mcPct > 0 ? avgFixo / (mcPct/100) : 0;
+
+  document.getElementById('meta-be').textContent = fmtBRL(be);
+  document.getElementById('meta-sa').textContent = fmtBRL(avgFixo * 1.3 / (mcPct/100));
+  document.getElementById('meta-cr').textContent = fmtBRL(avgFixo * 1.6 / (mcPct/100));
+  const recentLabels = recent.map(m=>m.label).join(', ');
+  document.getElementById('meta-explica').innerHTML =
+    `Custo fixo médio (${recentLabels}) = <strong style="color:var(--text)">${fmtBRL(avgFixo)}/mês</strong> · MC média = <strong style="color:var(--text)">${fmtPct(mcPct)}</strong> · Break-even = ${fmtBRL(avgFixo)} ÷ ${fmtPct(mcPct)} = <strong style="color:var(--accent)">${fmtBRL(be)}</strong>`;
+
+  // Status meses
+  const sm = document.getElementById('rr-meses');
+  sm.innerHTML = '';
+  for (const m of filled.slice(-6)) {
+    const c = calcMes(m);
+    const pos = c.lucroOp >= 0;
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)';
+    row.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:8px;height:8px;border-radius:50%;background:${pos?'var(--green)':'var(--red)'}"></div>
+        <div style="font-size:13px;font-weight:600;font-family:var(--font-mono)">${m.label}</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:center">
+        <div style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">${fmtK(m.receita)}</div>
+        <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:${pos?'var(--green)':'var(--red)'};min-width:80px;text-align:right">${fmtK(c.lucroOp)}</div>
+      </div>`;
+    sm.appendChild(row);
+  }
+
+  // Saúde
+  const mesesPos = filled.filter(m => calcMes(m).lucroOp > 0).length;
+  const totRec   = filled.reduce((s,m)=>s+m.receita,0);
+  const totLuc   = filled.reduce((s,m)=>s+calcMes(m).lucroOp,0);
+  const margOp   = totRec > 0 ? (totLuc/totRec*100) : 0;
+  const avgRec   = filled.length > 0 ? totRec/filled.length : 0;
+  const saude = document.getElementById('rr-saude');
+  const indicators = [
+    { label:'Meses no azul', v:`${mesesPos}/${filled.length}`, c: mesesPos >= filled.length*.7 ? 'var(--green)':'var(--yellow)' },
+    { label:'Receita média/mês', v:fmtK(avgRec), c:'var(--text)' },
+    { label:'Margem operacional média', v:fmtPct(margOp), c:margOp>=15?'var(--green)':margOp>=0?'var(--yellow)':'var(--red)' },
+    { label:'Margem de contribuição', v:fmtPct(mcPct), c:mcPct>=50?'var(--green)':'var(--yellow)' },
+  ];
+  saude.innerHTML = indicators.map(i=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
+      <div style="font-size:12px;color:var(--muted)">${i.label}</div>
+      <div style="font-size:15px;font-weight:700;color:${i.c};font-family:var(--font-mono)">${i.v}</div>
+    </div>`).join('');
+}
+
+// ============================================================
+// BADGES
+// ============================================================
+function updateBadges() {
+  const active = JOBS.filter(j => ['orcado','aprovado','producao'].includes(j.status));
+  document.getElementById('badge-pipeline').textContent = active.length;
+  document.getElementById('badge-todos').textContent    = JOBS.length;
+  document.getElementById('badge-trilha').textContent   = JOBS.filter(j=>j.tipo==='Trilha original').length;
+  document.getElementById('badge-sound').textContent    = JOBS.filter(j=>j.tipo==='Sound design').length;
+  document.getElementById('badge-jingle').textContent   = JOBS.filter(j=>j.tipo==='Jingle').length;
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+function openModal(id=null) {
+  editingId = id;
+  document.getElementById('modal-title').textContent = id ? 'Editar Job' : 'Novo Job';
+  document.getElementById('modal-save-btn').textContent = id ? 'Salvar alterações' : 'Salvar';
+  if (!id) {
+    ['f-cliente','f-agencia','f-notas'].forEach(i=>document.getElementById(i).value='');
+    document.getElementById('f-valor').value = '';
+    document.getElementById('f-custo').value = '';
+    document.getElementById('f-tipo').value = 'Trilha original';
+    document.getElementById('f-status').value = 'orcado';
+    document.getElementById('f-mes').value = '';
+  } else {
+    const j = JOBS.find(j=>j.id===id);
+    if (!j) return;
+    document.getElementById('f-cliente').value = j.cliente;
+    document.getElementById('f-agencia').value = j.agencia||'';
+    document.getElementById('f-tipo').value    = j.tipo;
+    document.getElementById('f-status').value  = j.status;
+    document.getElementById('f-valor').value   = j.valor;
+    document.getElementById('f-custo').value   = j.custo_variavel;
+    document.getElementById('f-mes').value     = j.mes_referencia||'';
+    document.getElementById('f-notas').value   = j.notas||'';
+  }
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  editingId = null;
+}
+
+function editJob(id) { openModal(id); }
+
+async function saveJob() {
+  const cliente = document.getElementById('f-cliente').value.trim();
+  const valor   = parseFloat(document.getElementById('f-valor').value) || 0;
+  if (!cliente || !valor) { showToast('Cliente e Valor são obrigatórios.', true); return; }
+
+  const custo = parseFloat(document.getElementById('f-custo').value) || 0;
+  const lucro = valor - custo;
+  const marg  = valor > 0 ? (lucro/valor*100) : 0;
+
+  const payload = {
+    cliente, valor, custo_variavel: custo, lucro, margem_pct: Math.round(marg*100)/100,
+    agencia:       document.getElementById('f-agencia').value.trim() || null,
+    tipo:          document.getElementById('f-tipo').value,
+    status:        document.getElementById('f-status').value,
+    mes_referencia:document.getElementById('f-mes').value || null,
+    notas:         document.getElementById('f-notas').value.trim() || null,
+  };
+
+  try {
+    if (editingId) {
+      await updateJob(editingId, payload);
+      JOBS = JOBS.map(j => j.id === editingId ? {...j, ...payload} : j);
+      showToast('Job atualizado!');
+    } else {
+      const [created] = await insertJob(payload);
+      JOBS.unshift(created);
+      showToast('Job adicionado!');
+    }
+    closeModal();
+    renderAll();
+  } catch(e) {
+    showToast('Erro ao salvar. Tente novamente.', true);
+    console.error(e);
+  }
+}
+
+async function confirmDelete(id) {
+  const j = JOBS.find(j=>j.id===id);
+  if (!j || !confirm(`Deletar "${j.cliente} — ${j.tipo}"?`)) return;
+  try {
+    await deleteJob(id);
+    JOBS = JOBS.filter(j=>j.id!==id);
+    renderAll();
+    showToast('Job removido.');
+  } catch(e) {
+    showToast('Erro ao deletar.', true);
+  }
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, err=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderColor = err ? 'var(--red)' : 'var(--accent)';
+  t.style.color = err ? 'var(--red)' : 'var(--accent)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+document.querySelectorAll('.nav-item[data-view]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item[data-view]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + btn.dataset.view).classList.add('active');
+  });
+});
+
+document.querySelectorAll('.tipo-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tipo-filter').forEach(b => b.classList.remove('active-tipo'));
+    btn.classList.add('active-tipo');
+    currentTipoFilter = btn.dataset.tipo;
+    renderPipelineTable();
+  });
+});
+
+document.getElementById('search-input').addEventListener('input', renderPipelineTable);
+document.getElementById('filter-status').addEventListener('change', renderPipelineTable);
+document.getElementById('filter-tipo').addEventListener('change', renderPipelineTable);
+document.getElementById('filter-mes').addEventListener('change', renderPipelineTable);
+document.getElementById('dash-periodo').addEventListener('change', renderDashboard);
+document.getElementById('modal-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+
+// ============================================================
+// START
+// ============================================================
+init();
+</script>
+</body>
+</html>
